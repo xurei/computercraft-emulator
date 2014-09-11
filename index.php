@@ -88,7 +88,7 @@
 
 	<script src="js/ui.js"></script>
 	
-	<?php if (true || !file_exists("/home/olivier")): ?>
+	<?php if (!file_exists("/home/olivier")): ?>
 	<?php $ga_code=""; if (file_exists(dirname(__FILE__)."/ga_code.txt")) $ga_code=file_get_contents(dirname(__FILE__)."/ga_code.txt"); ?>
 		<script>
 			var _gaq = _gaq || [];
