@@ -6,11 +6,7 @@
 <body>
 	<div id="main" class="row-fluid">
 		<section id="left-pane">
-			<div id="editor">print("hello world !")
-	
-monitor = peripheral.wrap("right")
-monitor.clear()
-			</div>
+			<div id="editor">print("hello world !")</div>
 		</section>
 		<div id="sides-pane">
 			<ul>
