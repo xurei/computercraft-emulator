@@ -1,0 +1,53 @@
+@import "../mixins";
+
+.periph-monitor
+{
+	font-family: "mc",monospace;
+	$pixel-size: 4px;
+	font-size: 7 * $pixel-size;
+	line-height: 10 * $pixel-size;
+	position: relative;
+	height: 100%;
+	width: 100%;
+	background-color: #000;
+	overflow: scroll;
+	
+	> .text
+	{
+		border-spacing: 0;
+    border-collapse: separate;
+		color: #fff;
+		white-space: pre;
+		padding: 0 $pixel-size;
+		position: absolute;
+		@include box-sizing(border-box);
+		line-height: 1.15em;
+		font-size: inherit;
+		
+		display: inline-block;
+		
+		td
+		{
+			vertical-align: top;
+			width: 5*$pixel-size;
+			padding: 0;
+			@include box-sizing(border-box);
+			//overflow: hidden;
+			font-size: inherit;
+			
+			&:nth-child(7), &:nth-child(18), &:nth-child(29), &:nth-child(39), &:nth-child(50)
+			{
+				border-right: solid 1px rgba(128,128,128, 0.3);
+			}
+		}
+			
+		//$one-char: 6 * $pixel-size;
+		//$one-block: 7 * $one-char * 0.88;
+		//$two-blocks: 18 * $one-char * 0.885;
+		//$three-blocks: 29 * $one-char * 0.8865;
+		//$four-blocks: 39 * $one-char;
+		//
+		//$one-block-h: 5 * 9 * $pixel-size;
+		//$two-blocks-h: 11 * 9 * $pixel-size;
+	}
+}

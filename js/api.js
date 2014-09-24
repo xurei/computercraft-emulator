@@ -1,55 +1,78 @@
 (function ($)
 {
-	window.CCAPI = [];
+	window.CCAPI = {};
 
 	var CCAPI = window.CCAPI;
 	CCAPI.null = null;
-	CCAPI.peripherals = [];
+	CCAPI.peripherals = {};
 
 	CCAPI.peripherals.left = null;
-	CCAPI.peripherals.right = "monitor";
+	CCAPI.peripherals.right = null;
 	CCAPI.peripherals.top = null;
 	CCAPI.peripherals.bottom = null;
 	CCAPI.peripherals.front = null;
 	CCAPI.peripherals.back = null;
 	
-	CCAPI.peripheralTypes = [];
+	CCAPI.peripheralTypes = {};
+	//----------------------------------------------------------------------------
+	
+	CCAPI.sleep = function(time_s)
+	{
+		$.ajax({
+			url: "sleep.php?t="+time_s,
+			cache: false,
+			async: false
+		});
+	};
+	//----------------------------------------------------------------------------
+	
+	CCAPI.colors = {
+		1    : "#FFFFFF",
+		2    : "#FFA500",
+		4    : "#FF00FF",
+		8    : "#ADD8E6",
+		16   : "#FFFF00",
+		32   : "#00FF00",
+		64   : "#FFC0CB",
+		128  : "#808080",
+		256  : "#D3D3D3",
+		512  : "#00FFFF",
+		1024 : "#800080",
+		2048 : "#0000FF",
+		4096 : "#A52A2A",
+		8192 : "#008000",
+		16384: "#FF0000",
+		32768: "#000000"
+	};
+	console.log(CCAPI.colors);
 	//----------------------------------------------------------------------------
 	
 	/**
 	 * This method registers a new type of peripheral in the emulator 
 	 */
 	CCAPI.registerPeripheral = function (periph_name, full_name)	{
-		var js = document.createElement("script")
-		var tmpl = document.createElement("script")
+		var js = document.createElement("script");
+		var tmpl = document.createElement("script");
+		var css = document.createElement("link");
 		
-		js.setAttribute("type", "text/javascript")
-		tmpl.setAttribute("type", "text/x-jquery-tmpl")
+		css.setAttribute('rel', 'stylesheet');
+		css.setAttribute('type', 'text/css');
+		js.setAttribute("type", "text/javascript");
+		tmpl.setAttribute("type", "text/x-jquery-tmpl");
 		var lua_loaded = false; 
 		var tmpl_loaded = false; 
 
-		setTimeout(function(){
-			js.setAttribute("src", "peripherals/"+periph_name+"/"+periph_name+".js");
-		}, 100);
-		$.ajax({
-			url: "peripherals/"+periph_name+"/"+periph_name+".lua",
-			success: function(data) {
-				lua_loaded = true;
-				L = Lua.eval(L, data)
-			}
-		});
+		js.setAttribute("src", "peripherals/"+periph_name+"/"+periph_name+".js");
+		css.setAttribute("href", "peripherals/"+periph_name+"/"+periph_name+".css");
+		
 		$.ajax({
 			url: "peripherals/"+periph_name+"/"+periph_name+".tmpl",
+			async: false,
 			success: function(data) {
 				tmpl.innerHTML = data;
 				tmpl_loaded = true;
 			}
 		});
-		/*var wait = function() {
-			if (tmpl_loaded && lua_loaded) {
-				
-			}
-		}*/
 		
 		$('.select-block-type').each(function(){
 			var $option = $('<option value="'+periph_name+'">'+full_name+'</option>');
@@ -60,8 +83,8 @@
 			"tmpl": tmpl
 		};
 		
+		$("head").append(css);
 		$("body").append(js);
-		$("body").append(tmpl);
 	};
 	//----------------------------------------------------------------------------
 	
@@ -76,5 +99,14 @@
 			console.error("No peripheral with this name : "+name);
 	};
 	//----------------------------------------------------------------------------
+	
+	CCAPI.call = function (side, method, args)
+	{
+		console.log(side+":"+method+"(");
+		for (var i = 2; i < arguments.length; i++) {
+	    console.log(arguments[i]+",");
+	  }
+		console.log(")");
+	}
 	
 })(jQuery);

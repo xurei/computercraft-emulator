@@ -12,7 +12,7 @@ window.console=(function(origConsole, $){
 		$console.append($el);
 	}
 	
-	return {
+	var out = {
 		enable: function(){
 			enabled = true;
 		},
@@ -62,4 +62,13 @@ window.console=(function(origConsole, $){
 			isDebug = bool;
 		}
 	};
+	
+
+	for (i in origConsole) {
+		if (out[i] == undefined) {
+			out[i] = origConsole[i];
+		} 
+	}
+	
+	return out;
 }(window.console, jQuery));

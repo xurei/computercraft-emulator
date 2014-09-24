@@ -16,6 +16,7 @@ colors.brown     = 4096
 colors.green     = 8192
 colors.red       = 16384
 colors.black     = 32768
+-- -----------------------------------------------------------------------------
 
 -- FIXME cannot use multiple arguments, got a syntax error. I'm using a lot of arguments instead 
 function colors.combine(c1,c2,c3,c4,c5,c6,c7,c8,c9)

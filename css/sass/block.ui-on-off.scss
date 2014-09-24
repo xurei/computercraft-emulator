@@ -1,0 +1,65 @@
+.ui-on-off
+{
+	display: block;
+	position: relative;
+	@include border-radius(3px);
+	margin-top: 5px;
+	
+	$h: 32px;
+	$w: round($h * 1.3 * 2);
+	
+	&:before, &:after
+	{
+		display: inline-block;
+		@include box-sizing(border-box);
+		height: $h;
+		@include border-radius(3px);
+		line-height: $h;
+		cursor: pointer;
+	}
+	
+	&:before
+	{
+		content: "OFF";
+		border: solid 1px #aaa;
+		width: $w;
+		vertical-align: middle;
+		background: #ccc;
+		padding-left: $w / 2;
+		text-align: center;
+		color: #888;
+	}
+	&:after
+	{
+		content: "";
+		border: solid 1px #ccc;
+		background: #fff;
+		width: $w / 2;
+		height: $h;
+		position: absolute;
+		left: 0;
+		@include transition(left 0.15s ease-out);
+	}
+	
+	&.active
+	{
+		&:before
+		{
+			background: #1a1;
+			content: "ON";
+			color: #fff;
+			padding-right: $w / 2;
+			padding-left: 0;
+		}
+		&:after
+		{
+			left: $w / 2;
+		}
+	}
+	
+	
+	input[type="checkbox"]
+	{
+		display: none;
+	}
+}

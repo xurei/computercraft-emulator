@@ -1,0 +1,7 @@
+@mixin box-sizing($v)
+{
+	box-sizing: $v;
+	-moz-box-sizing: $v;
+	-webkit-box-sizing: $v;
+	-ms-box-sizing: $v;
+}

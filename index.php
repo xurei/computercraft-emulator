@@ -46,46 +46,20 @@
 	</div>
 
 	<script src="js/jquery.min.js"></script>
-	<script src="js/jsLogger.js" type="text/javascript"></script>
+	<?/*<script src="js/jsLogger.js" type="text/javascript"></script>*/?>
 	<script src="js/jquery.tmpl.min.js"></script>
-	<script src="lua.vm.js"></script>
-	<script src="lua.vm.extend.js"></script>
+	<script src="js/lua.vm.js"></script>
+	<script src="js/lua.vm.extend.js"></script>
 	<script src="js/util.js"></script>
 	<script src="js/api.js"></script>
 	
-	<script type="text/lua">
-		<?php include "lua/math.lua"; ?>
-		<?php include "lua/bit.lua"; ?>
-	</script>
-	<script type="text/lua">
-		<?php include "lua/colors.lua"; ?>
-	</script>
-	<script type="text/lua">
-		<?php include "lua/util.lua"; ?>
-	</script>
-	<script type="text/lua">
-		<?php include "lua/periph/peripheral.lua"; ?>
-	</script>
-	<?php /*
-	<script type="text/lua">
-		<?php include "tests/test-bit.lua"; ?>
-		<?php include "tests/test-colors.lua"; ?>
-	</script>
-	*/ ?>
-	<?php /*<script type="text/lua">
-		<?php include "lua/test.lua"; ?>
-	</script> */?>
-	<?php /*
-	<script type="text/lua">
-		<?php include "lua/bigreactor-monitor.lua"; ?>
-	</script>
-	*/ ?>
 	<script src="js/ace/ace.js" type="text/javascript"></script>
 	<script>
 	    window.editor = ace.edit("editor");
 	    editor.setTheme("ace/theme/monokai");
 	    editor.getSession().setMode("ace/mode/lua");
 	</script>
+	<script src="js/requestAnimationFrame.js"></script>
 
 	<script src="js/ui.js"></script>
 	
@@ -101,6 +75,8 @@
 		    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
 		  })();
 		</script>
+	<?php else: ?>
+		<script src="/cssrefresh.js" type="text/javascript"></script>
 	<?php endif ?>
 	
 </body>

@@ -1,0 +1,48 @@
+input
+{
+	&[type="text"], &[type="password"]//, &[type="number"]//, &[type="password"], &[type="password"]
+	{
+		border: solid 1px #ccc;
+		padding: 3px 5px;
+		@include border-radius(3px);
+	}
+}
+
+
+//-------------------------------- UNITS ---------------------------------------
+%input-unit
+{
+	&:after
+	{
+		position: relative;
+		color: #bbb;
+		font-size: 0.9rem;
+		z-index: 1;
+	}
+	input[type="text"]
+	{
+		position: relative;
+		background: none;
+		z-index: 2;
+	}
+}
+
+.input-unit-mb
+{
+	@extend %input-unit;
+	&:after
+	{
+		content: "mB";
+		margin-left: -28px;
+	}
+}
+
+.input-unit-mb-per-tick
+{
+	@extend %input-unit;
+	&:after
+	{
+		content: "mB/tick";
+		margin-left: -56px;
+	}
+}

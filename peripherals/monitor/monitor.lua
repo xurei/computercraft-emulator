@@ -1,10 +1,12 @@
 Monitor = {}
 
 function Monitor.new (o)
-	local CCAPI = js.global.CCAPI
-	local APIMonitor = CCAPI.Monitor
+	-- for key,value in pairs(o) do
+	-- 	print(key)
+	-- end
+	-- 
+	-- return js.global.CCAPI.Monitor:new(o)
 	local out = {}
-	out.jsmonitor = o
 	out.x = 1
 	out.y = 1
 	out.clear = function()
