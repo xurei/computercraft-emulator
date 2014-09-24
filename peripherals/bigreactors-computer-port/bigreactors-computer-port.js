@@ -48,32 +48,35 @@
 		//--------------------------------------------------------------------------
 		
 		out.getControlRodName = function (i) {
-			
+			console.log("getControlRodName() Not supported yet");
 		};
 		//--------------------------------------------------------------------------
 		
 		out.getControlRodLevel = function (i) {
-			
+			console.log("getControlRodLevel() Not supported yet");
 		};
 		//-------------------------------------------------------------------------- 
 		 
 		out.setActive = function (b) {
-			
+			if (b=="true")
+				$elem.find('.is-active').addClass('active');
+			else
+				$elem.find('.is-active').removeClass('active');
 		};
 		//-------------------------------------------------------------------------- 
 		 
 		out.setAllControlRodLevels = function () {
-			
+			console.log("setAllControlRodLevels() Not supported yet");
 		};
 		//-------------------------------------------------------------------------- 
 		 
 		out.setControlRodLevel = function () {
-			
+			console.log("setControlRodLevel() Not supported yet");
 		};
 		//-------------------------------------------------------------------------- 
 		
 		out.doEjectWaste = function () {
-			
+			$elem.find('[name="waste-amount"]').val(0);
 		};
 		//-------------------------------------------------------------------------- 
 		
