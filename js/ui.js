@@ -94,7 +94,7 @@
 		}
 		
 		var worker = new Worker('js/lua_worker.js');
-		
+
 		worker.addEventListener("message", function(e){
 			e = e.data;
 			switch(e.type)
@@ -123,23 +123,44 @@
 					}, time*1000);
 					break;
 				}
+				case "END":{
+					var $run_btn = $('#sides-pane .run');
+					$run_btn.attr('data-running', "0");
+					$run_btn.text("Run");
+					worker.postMessage({type:"STOP"});
+					break;
+				}
 			}
 		});
 		$('#sides-pane .run').click(function(){
 			var text = "" + window.editor.getValue();
+			
+			var $this = $(this);
+			
+			var running = $this.attr('data-running');
+			if (running === "1") {
+				$this.attr('data-running', "0");
+				worker.postMessage({type:"STOP"});
+				$this.text("Run");
+			}
+			else {
+				$this.attr('data-running', "1");
+				$this.text("Stop");
 
-			localStorage.setItem('code', text);
-			
-			var periph = {
-				left: getPeriphSignature(CCAPI.peripherals.left),
-				right: getPeriphSignature(CCAPI.peripherals.right),
-				top: getPeriphSignature(CCAPI.peripherals.top),
-				bottom: getPeriphSignature(CCAPI.peripherals.bottom),
-				front: getPeriphSignature(CCAPI.peripherals.front),
-				back: getPeriphSignature(CCAPI.peripherals.back)
-			};
-			
-			worker.postMessage({type:"START", code: text, peripherals: periph});
+				localStorage.setItem('code', text);
+				
+				var periph = {
+					left: getPeriphSignature(CCAPI.peripherals.left),
+					right: getPeriphSignature(CCAPI.peripherals.right),
+					top: getPeriphSignature(CCAPI.peripherals.top),
+					bottom: getPeriphSignature(CCAPI.peripherals.bottom),
+					front: getPeriphSignature(CCAPI.peripherals.front),
+					back: getPeriphSignature(CCAPI.peripherals.back)
+				};
+				
+				worker.postMessage({type:"START", code: text, peripherals: periph});
+			}
+				
 			//worker.postMessage('L', eval("(" + JSON.stringify(L) + ")"));
 			//lua_parser.parse(text);
 			//Lua.eval(L, text);

@@ -4,6 +4,7 @@ importScripts("lua5.1.5.js"/*, "lua.vm.extend.js"*/);
 var global = this;
 var call_return = null;
 global.CCAPI = {};
+global.running = false;
 
 var C = Lua5_1.C;
 var L = C.lua_open();
@@ -154,14 +155,13 @@ addEventListener("message", function(e) {
 	switch (e.data.type)
 	{
 		case 'START': {
-			//global.CCAPI.peripherals = e.data.peripherals;
+			global.running = true;
 			
 			//Pushing the peripherals' signature into the Lua VM
 			execute("peripheral.periphs = "+jsontotable(e.data.peripherals));
 			
-			
 			//Defining the code as a coroutine
-			var code = "main_routine = coroutine.create(function ()\n" + e.data.code + "\nend)";
+			var code = "main_routine = coroutine.create(function ()\n" + e.data.code + "\n SEND_MESSAGE(\"{\\\"type\\\":\\\"END\\\"}\")\nend)";
 			execute(code);
 
 			//Running the code
@@ -171,16 +171,14 @@ addEventListener("message", function(e) {
 		}
 		
 		case 'CALL_RETURN':{
-			//console.log("CALL_RETURN");
-			global.CCAPI.resume(e.data.value);
-			//global.call_return = e.data.value;
-
-			//console.log(global.CCAPI);
-			/*global.main_routine.get('peripheral').
-			for (i in global.main_routine)
-			{
-				console.log(i);
-			}*/
+			if (global.running) {
+				global.CCAPI.resume(e.data.value);
+			}
+			break;
+		}
+		
+		case 'STOP':{
+			global.running = false;
 			break;
 		}
 	}
