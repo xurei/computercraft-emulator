@@ -108,8 +108,8 @@ C.lua_pushcfunction(
 			out += sep + args[i];
 			sep = "\t"; 
 		}
-		
-		console.log("{Lua} " + out);
+
+		global.postMessage( {type:"PRINT", data:out} );
 		return 0;
 	})
 );

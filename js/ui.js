@@ -94,6 +94,8 @@
 		}
 		
 		var worker = new Worker('js/lua_worker.js');
+		
+		var $console = $('#console');
 
 		worker.addEventListener("message", function(e){
 			e = e.data;
@@ -103,7 +105,6 @@
 				case "CALLASYNC":{
 					var side = e.side;
 					var method = e.method;
-					//console.log('CALLED '+side+"."+method);
 					var args = e.args;
 					args = $.map(args, function(value, index) {
 				    return [value];
@@ -128,6 +129,11 @@
 					$run_btn.attr('data-running', "0");
 					$run_btn.text("Run");
 					worker.postMessage({type:"STOP"});
+					break;
+				}
+				case "PRINT":{
+					$console.append(e.data+"<br>");
+					//console.log("{Lua} " + e.data);
 					break;
 				}
 			}

@@ -1,4 +1,4 @@
-<!DOCTYPE htmightl>
+<!DOCTYPE html>
 <html>
 <head>
 	<title>Computercraft Emulator</title>
@@ -26,7 +26,7 @@
 				<div class="side-header">
 					<a id="console-clear" href="javascript:;">Clear</a>
 				</div>
-				<div class="side-content" id="console"></div>
+				<pre class="side-content" id="console"></pre>
 			</div>
 			<?php 
 			$sides = array("top","bottom","left","right","front","back");
