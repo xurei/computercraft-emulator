@@ -1,50 +1,28 @@
-(function ()
+(function (CCAPI)
 {
-	var CCAPI = window.CCAPI;
 	CCAPI.BigReactorPort = function ($elem) {
-		var out = {};
-		out.elem = $elem;
-		
-		var get_on_off_bindings = {
-			'getConnected': $elem.find('.is-connected'),
-			'getActive': $elem.find('.is-active'),
-			'isActivelyCooled': $elem.find('.is-actively-cooled')
-		};
-		for (var fn_name in get_on_off_bindings)
-		{
-			(function(get_on_off_bindings, fn_name){
-				out[fn_name] = function() { 
-					return [get_on_off_bindings[fn_name].hasClass('active')];
-				}
-			})(get_on_off_bindings, fn_name);
-		}
+		var out = CCAPI.basePeripheral($elem);
+
+		out._addOnOffGetter("getConnected", '.is-connected');
+		out._addOnOffGetter("getActive", '.is-connected');
+		out._addOnOffGetter("isActivelyCooled", '.is-connected');
 		//--------------------------------------------------------------------------
 
-		var get_bindings = {
-			'getNumberOfControlRods': $elem.find('[name="nb-control-rods"]'),
-			'getEnergyStored': $elem.find('[name="energy"]'),
-			'getFuelTemperature': $elem.find('[name="fuel-temp"]'), 
-			'getCasingTemperature': $elem.find('[name="casing-temp"]'), 
-			'getFuelAmount': $elem.find('[name="fuel-amount"]'), 
-			'getWasteAmount': $elem.find('[name="waste-amount"]'), 
-			'getFuelAmountMax': $elem.find('[name="fuel-amount-max"]'), 
-			'getEnergyProducedLastTick': $elem.find('[name="energy-production"]'), 
-			'getHotFluidProducedLastTick': $elem.find('[name="hot-fluid-production"]'), 
-			'getCoolantType': $elem.find('[name="coolant-type"]'), 
-			'getCoolantAmount': $elem.find('[name="coolant-amount"]'), 
-			'getHotFluidType': $elem.find('[name="hot-fluid-type"]'), 
-			'getHotFluidAmount': $elem.find('[name="hot-fluid-amount"]'), 
-			'getFuelReactivity': $elem.find('[name="fuel-reactivity"]'), 
-			'getFuelConsumedLastTick': $elem.find('[name="fuel-consumption"]')
-		};
-		for (fn_name in get_bindings)
-		{
-			(function(get_on_off_bindings, fn_name){
-				out[fn_name] = function() { 
-					return [parseInt(get_bindings[fn_name].val())];
-				}
-			})(get_bindings, fn_name);
-		}
+		out._addNumGetter('getNumberOfControlRods', '[name="nb-control-rods"]');
+		out._addNumGetter('getEnergyStored', '[name="energy"]');
+		out._addNumGetter('getFuelTemperature', '[name="fuel-temp"]'); 
+		out._addNumGetter('getCasingTemperature', '[name="casing-temp"]');
+		out._addNumGetter('getFuelAmount', '[name="fuel-amount"]');
+		out._addNumGetter('getWasteAmount', '[name="waste-amount"]'); 
+		out._addNumGetter('getFuelAmountMax', '[name="fuel-amount-max"]'); 
+		out._addNumGetter('getEnergyProducedLastTick', '[name="energy-production"]'); 
+		out._addNumGetter('getHotFluidProducedLastTick', '[name="hot-fluid-production"]'); 
+		out._addNumGetter('getCoolantType', '[name="coolant-type"]');
+		out._addNumGetter('getCoolantAmount', '[name="coolant-amount"]'); 
+		out._addNumGetter('getHotFluidType', '[name="hot-fluid-type"]');
+		out._addNumGetter('getHotFluidAmount', '[name="hot-fluid-amount"]'); 
+		out._addNumGetter('getFuelReactivity', '[name="fuel-reactivity"]');
+		out._addNumGetter('getFuelConsumedLastTick', '[name="fuel-consumption"]');
 		//--------------------------------------------------------------------------
 		
 		out.getControlRodName = function (i) {
@@ -84,4 +62,4 @@
 	};
 	
 	CCAPI.peripheralTypes["bigreactors-computer-port"].constructor = CCAPI.BigReactorPort;
-})();
+})(window.CCAPI);
