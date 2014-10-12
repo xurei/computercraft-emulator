@@ -1,8 +1,7 @@
 (function (CCAPI)
 {
 	CCAPI.${template} = function ($elem) {
-		var out = {};
-		out.elem = $elem;
+		var out = CCAPI.basePeripheral($elem);
 		
 		return out;
 	};

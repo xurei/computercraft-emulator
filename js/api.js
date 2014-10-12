@@ -100,4 +100,12 @@
 		console.log(")");
 	}
 	
+	//Register the base Peripheral
+	{
+		var js = document.createElement("script");
+		js.setAttribute("type", "text/javascript");
+		js.setAttribute("src", "peripherals/basePeripheral.js");
+		$("body").append(js);
+	}
+	
 })(jQuery);
