@@ -13,8 +13,14 @@ function peripheral.wrap(side)
 end
 -- -----------------------------------------------------------------------------
 
-function peripheral.call(side, method, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9)
-	
+function peripheral.call(side, key, ...)
+	return peripheral._call(side, key, arg)
+end
+-- -----------------------------------------------------------------------------
+
+function peripheral._call(side, key, args)
+	local event = '{"type":"CALL","side":"'..side..'","method":"'..key..'","args":'..tabletojson(args)..'}'
+	return coroutine.yield(event)
 end
 -- -----------------------------------------------------------------------------
 
@@ -46,12 +52,13 @@ function peripheral.__factory.create(side, object)
 	for _i,key in pairs(object.methods) do
 		if (key == "write" or key == "setCursorPos" or key == "setBackgroundColor") then
 			out[key] = function(...)
-				SEND_MESSAGE(tabletojson({type="CALLASYNC", side=side, method=key, args=arg }))
+				local event = '{"type":"CALLASYNC","side":"'..side..'","method":"'..key..'","args":'..tabletojson(arg)..'}'
+				SEND_MESSAGE(event)
 			end
 		else
 			out[key] = function(...)
 				-- pausing the coroutine and sending the event as parameters - The returned value will be the output of the method
-				return coroutine.yield({type="CALL", side=side, method=key, args=arg })
+				return peripheral._call(side, key, arg)
 			end
 		end
 	end

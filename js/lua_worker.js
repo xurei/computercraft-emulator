@@ -87,6 +87,7 @@ function init()
 	load_lua('../lua/util.lua	');
 	load_lua('../lua/tabletojson.lua');
 	load_lua('../lua/peripheral.lua');
+	load_lua('../lua/redstone.lua');
 	//----------------------------------------------------------------------------
 
 	C.lua_pushcfunction(
@@ -177,7 +178,7 @@ global.CCAPI.resume = function(values) {
 		"		SEND_MESSAGE('{\"type\":\"ERROR\",\"message\":\"'..string.gsub(event,'\"','\\\\\"')..'\"}')\n" +
 		"		SEND_MESSAGE('{\"type\":\"END\"}')\n" +
 		"	else\n" +
-		"		SEND_MESSAGE(tabletojson(event))\n" +
+		"		SEND_MESSAGE(event)\n" +
 		"	end\n" +
 		"end";
 	execute(code);
