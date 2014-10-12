@@ -4,6 +4,7 @@
 		if (onload) onload();
 
 		CCAPI.registerPeripheral("monitor", "ComputerCraft Monitor");
+		CCAPI.registerPeripheral("redstone", "Redstone");
 		CCAPI.registerPeripheral("bigreactors-computer-port", "BigReactors Computer Port");
 		
 		var current_side = null;
@@ -44,7 +45,6 @@
 		{
 			var $side = $('#right-pane .side-'+side+" .side-content");
 			var $side_periph = $('#sides-pane .side[data-side="'+side+'"] .periph');
-			console.log($side);
 			
 			if (periph_type == "none")
 			{
