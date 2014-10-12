@@ -52,8 +52,7 @@
 	<script src="js/jquery.min.js"></script>
 	<?/*<script src="js/jsLogger.js" type="text/javascript"></script>*/?>
 	<script src="js/jquery.tmpl.min.js"></script>
-	<script src="js/util.js"></script>
-	<script src="js/api.js"></script>
+	<script src="js/api.js?_t=<?=rand()?>"></script>
 	
 	<script src="js/ace/ace.js" type="text/javascript"></script>
 	<script>
@@ -61,9 +60,8 @@
 	    editor.setTheme("ace/theme/monokai");
 	    editor.getSession().setMode("ace/mode/lua");
 	</script>
-	<script src="js/requestAnimationFrame.js"></script>
 
-	<script src="js/ui.js"></script>
+	<script src="js/ui.js?_t=<?=rand()?>"></script>
 	
 	<?php if (!file_exists("/home/olivier")): ?>
 	<?php $ga_code=""; if (file_exists(dirname(__FILE__)."/ga_code.txt")) $ga_code=file_get_contents(dirname(__FILE__)."/ga_code.txt"); ?>

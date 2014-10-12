@@ -225,7 +225,6 @@
 		{
 			out.__refresh();
 		}
-		//requestAnimationFrame(loop);
 		setInterval(loop, 200);
 		
 		return out;
