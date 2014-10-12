@@ -1,6 +1,6 @@
 function prh(o)
 	for key,value in pairs(o) do
-		_print("found member " .. key .. " type:" .. type(value));
+		_print("found member " .. key .. " type:" .. type(value).." value:"..tostring(value));
 	end
 end
 
@@ -15,7 +15,7 @@ function print(str)
 				l = l+1
 				if l==2 then
 					line = tonumber(j)
-		  		_print("Line " .. tostring(line-1) .. " : (" .. type(str) .. ")" .. tostring(str))
+		  		_print("Line " .. tostring(line-1) .. " : (" .. type(str) .. ")", tostring(str))
 		  		break
 		  	end
 		  end

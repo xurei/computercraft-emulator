@@ -9,6 +9,10 @@
 		
 		var current_side = null;
 		
+		var worker = new Worker('js/lua_worker.js?_t='+Math.random());
+		
+		var $console = $('#console');
+		
 		//--------------------------------------------------------------------------
 		
 		$('.togglable').click(function(){
@@ -96,12 +100,8 @@
 			return out;
 		}
 		//--------------------------------------------------------------------------
-		
-		var worker = new Worker('js/lua_worker.js?_t='+Math.random());
-		
-		var $console = $('#console');
 
-		worker.addEventListener("message", function(e){
+		var handleEvent = function(e){
 			e = e.data;
 			switch(e.type)
 			{
@@ -148,12 +148,15 @@
 					break;
 				}
 				case "PRINT":{
-					$console.append(e.data+"<br>");
+					$console.append(e.prefix+" "+e.data+"<br>");
+					CCAPI.peripherals.term.write(e.data);
+					CCAPI.peripherals.term.setCursorPos(1, CCAPI.peripherals.term.getCursorPos()[1]+1);
 					//console.log("{Lua} " + e.data);
 					break;
 				}
 			}
-		});
+		};
+		worker.addEventListener("message", handleEvent);
 		//--------------------------------------------------------------------------
 		
 		$('#sides-pane .run').click(function(){

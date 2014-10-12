@@ -84,7 +84,8 @@ function init()
 	load_lua('../lua/bit.lua');
 	load_lua('../lua/sleep.lua');
 	load_lua('../lua/colors.lua');
-	load_lua('../lua/util.lua	');
+	load_lua('../lua/util.lua');
+	load_lua('../lua/read.lua');
 	load_lua('../lua/tabletojson.lua');
 	load_lua('../lua/peripheral.lua');
 	load_lua('../lua/redstone.lua');
@@ -96,7 +97,8 @@ function init()
 		{
 			var args = [];
 			var str;
-			var i = 1;
+			var prefix = str = C.lua_tostring(L, i);
+			var i = 2;
 			while ((str = C.lua_tostring(L, i)) != "") {
 				args.push(str);
 				i++;
@@ -108,7 +110,7 @@ function init()
 				sep = "\t"; 
 			}
 
-			global.postMessage( {type:"PRINT", data:out} );
+			global.postMessage( {type:"PRINT", prefix:prefix, data:out} );
 			return 0;
 		})
 	);
