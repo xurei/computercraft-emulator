@@ -17,16 +17,6 @@
 	CCAPI.peripheralTypes = {};
 	//----------------------------------------------------------------------------
 	
-	CCAPI.sleep = function(time_s)
-	{
-		$.ajax({
-			url: "sleep.php?t="+time_s,
-			cache: false,
-			async: false
-		});
-	};
-	//----------------------------------------------------------------------------
-	
 	CCAPI.colors = {
 		1    : "#FFFFFF",
 		2    : "#FFA500",
