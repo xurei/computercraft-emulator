@@ -11,7 +11,8 @@
 		</section>
 		<div id="sides-pane">
 			<ul>
-				<li data-side="console" class="side togglable active">Console</li>
+				<li data-side="console" class="side togglable">Console</li>
+				<li data-side="term" class="side togglable active">Term</li>
 				<li data-side="top"     class="side togglable">top<div class="periph"></div></li>
 				<li data-side="left"    class="side togglable">left<div class="periph"></div></li>
 				<li data-side="right"   class="side togglable">right<div class="periph"></div></li>
@@ -22,6 +23,9 @@
 			</ul>
 		</div>
 		<section id="right-pane">
+			<div class="side side-term active">
+				<pre class="side-content" id="term"></pre>
+			</div>
 			<div class="side side-console">
 				<div class="side-header">
 					<a id="console-clear" href="javascript:;">Clear</a>

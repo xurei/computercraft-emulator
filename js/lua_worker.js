@@ -121,7 +121,6 @@ function init()
 		{
 			var json = C.luaL_checklstring(L, 1);
 			var obj = JSON.parse(json);
-			//console.log("SEND MESSAGE");
 			
 			global.postMessage(obj);
 			
@@ -140,13 +139,21 @@ function execute(code) {
 		init();
 	if (C.luaL_dostring(L, code) != 0)
 	{
-	  var err = C.lua_tostring(L, -1);
-	  C.lua_close(L);
-	  L = 0;
-		global.ready = false;
-		global.running = false;
-		global.postMessage({type:"END"});
-	  throw new Error("Lua error : " + err);
+		//Error handling
+		  var errmsg = C.lua_tostring(L, -1);
+		  C.lua_close(L);
+		  L = 0;
+			global.ready = false;
+			global.running = false;
+			
+			if (errmsg.substring(0,23) == '[string "main_routine =')
+			{
+				global.postMessage({type:"ERROR",message:errmsg});
+			}
+
+			global.postMessage({type:"END"});
+			
+		 throw new Error("Lua error : " + errmsg);
 	}
 }
 //------------------------------------------------------------------------------
@@ -164,7 +171,15 @@ global.CCAPI.resume = function(values) {
 			code += ", \""+values[i]+"\"";
 	}
 	code += ")\n";
-	code += "if event ~= nil then \n SEND_MESSAGE(tabletojson(event)) end";
+	code += 
+		"if event ~= nil then \n" +
+		"	if coroutine.status(main_routine) == \"dead\" then \n" +
+		"		SEND_MESSAGE('{\"type\":\"ERROR\",\"message\":\"'..string.gsub(event,'\"','\\\\\"')..'\"}')\n" +
+		"		SEND_MESSAGE('{\"type\":\"END\"}')\n" +
+		"	else\n" +
+		"		SEND_MESSAGE(tabletojson(event))\n" +
+		"	end\n" +
+		"end";
 	execute(code);
 };
 //------------------------------------------------------------------------------
@@ -175,12 +190,15 @@ addEventListener("message", function(e) {
 		case 'START': {
 			global.running = true;
 			console.log('START');
-			
+
 			//Pushing the peripherals' signature into the Lua VM
-			execute("print('ok')\nperipheral.periphs = "+jsontotable(e.data.peripherals));
+			execute("peripheral.periphs = "+jsontotable(e.data.peripherals));
+			
+			//Bindind term to a monitor
+			execute("term = peripheral.wrap('term')");
 			
 			//Defining the code as a coroutine
-			var code = "main_routine = coroutine.create(function ()\n" + e.data.code + "\n SEND_MESSAGE(\"{\\\"type\\\":\\\"END\\\"}\")\nend)";
+			var code = "main_routine = coroutine.create(function ()\n" + e.data.code + "\n SEND_MESSAGE('{\"type\":\"END\"}')\nend)";
 			execute(code);
 
 			//Running the code

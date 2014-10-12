@@ -67,6 +67,8 @@
 			}
 		};
 		
+		change_block_type('term', 'monitor');
+		
 		$('.select-block-type').change(function(){
 			var periph_type = $(this).val();
 			change_block_type(current_side, periph_type);
@@ -77,6 +79,7 @@
 		function emulateMessage (vVal) {
 		    return eval("(" + JSON.stringify(vVal) + ")");
 		}
+		//--------------------------------------------------------------------------
 		
 		function getPeriphSignature(periph) {
 			if (!periph) {
@@ -92,6 +95,7 @@
 			}
 			return out;
 		}
+		//--------------------------------------------------------------------------
 		
 		var worker = new Worker('js/lua_worker.js');
 		
@@ -131,6 +135,18 @@
 					worker.postMessage({type:"STOP"});
 					break;
 				}
+				case "ERROR":{
+					var data = e.message.split(":");
+					var line = data[1]-2;
+					console.log('ERROR '+line);
+					window.editor.getSession().setAnnotations([{
+					  row: line,
+					  text: data[2],
+					  type: "error" // also warning and information
+					}]);
+					$console.append("ERROR : Line "+(line+1)+" - "+data[2]+"<br>");
+					break;
+				}
 				case "PRINT":{
 					$console.append(e.data+"<br>");
 					//console.log("{Lua} " + e.data);
@@ -138,6 +154,8 @@
 				}
 			}
 		});
+		//--------------------------------------------------------------------------
+		
 		$('#sides-pane .run').click(function(){
 			var text = "" + window.editor.getValue();
 			
@@ -156,6 +174,7 @@
 				localStorage.setItem('code', text);
 				
 				var periph = {
+					term: getPeriphSignature(CCAPI.peripherals.term),
 					left: getPeriphSignature(CCAPI.peripherals.left),
 					right: getPeriphSignature(CCAPI.peripherals.right),
 					top: getPeriphSignature(CCAPI.peripherals.top),

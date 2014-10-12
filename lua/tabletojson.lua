@@ -4,14 +4,13 @@ function tabletojson(table)
 		if type(table) == "string" then
 			print("string: " .. table)
 		end
-		error("tabletojson() - table expected, got "..type(table), 2)
+		error("tabletojson() - table expected, got "..type(table).."\n"..tostring(table), 2)
 	end
 	local out = "{"
 	local sep = ""
 	for key,value in pairs(table) do
 		out = out .. sep .. "\"" .. key .. "\":"
 	
-		-- print(key)
 		if type(value) == "table" then
 			local c = tabletojson(value)
 			out = out .. c 

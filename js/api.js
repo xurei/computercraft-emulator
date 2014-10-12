@@ -6,6 +6,7 @@
 	CCAPI.null = null;
 	CCAPI.peripherals = {};
 
+	CCAPI.peripherals.term = null;
 	CCAPI.peripherals.left = null;
 	CCAPI.peripherals.right = null;
 	CCAPI.peripherals.top = null;
