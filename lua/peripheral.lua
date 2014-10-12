@@ -20,19 +20,7 @@ end
 
 function peripheral._getObject(side)
 	if peripheral.isPresent(side) then
-		if side == "left" then
-			return peripheral.periphs["left"]
-		elseif side == "right" then
-			return peripheral.periphs["right"]
-		elseif side == "top" then
-			return peripheral.periphs["top"]
-		elseif side == "bottom" then
-			return peripheral.periphs["bottom"]
-		elseif side == "front" then
-			return peripheral.periphs["front"]
-		elseif side == "back" then
-			return peripheral.periphs["back"]
-		end
+		return peripheral.periphs[side]
 	else
 		return nil
 	end
@@ -41,19 +29,7 @@ end
 
 function peripheral.getType(side)
 	if peripheral.isPresent(side) then
-		if side == "left" then
-			return peripheral.periphs["left"]["_periph_name"]
-		elseif side == "right" then
-			return peripheral.periphs["right"]["_periph_name"]
-		elseif side == "top" then
-			return peripheral.periphs["top"]["_periph_name"]
-		elseif side == "bottom" then
-			return peripheral.periphs["bottom"]["_periph_name"]
-		elseif side == "front" then
-			return peripheral.periphs["front"]["_periph_name"]
-		elseif side == "back" then
-			return peripheral.periphs["back"]["_periph_name"]
-		end
+		return peripheral.periphs[side]["_periph_name"]
 	else
 		return nil
 	end
@@ -61,19 +37,7 @@ end
 -- -----------------------------------------------------------------------------
 
 function peripheral.isPresent(side)
-	if side == "left" then
-		return peripheral.periphs["left"] ~= nil
-	elseif side == "right" then
-		return peripheral.periphs["right"] ~= nil
-	elseif side == "top" then
-		return peripheral.periphs["top"] ~= nil
-	elseif side == "bottom" then
-		return peripheral.periphs["bottom"] ~= nil
-	elseif side == "front" then
-		return peripheral.periphs["front"] ~= nil
-	elseif side == "back" then
-		return peripheral.periphs["back"] ~= nil
-	end
+	return peripheral.periphs[side] ~= nil
 end
 -- -----------------------------------------------------------------------------
 
