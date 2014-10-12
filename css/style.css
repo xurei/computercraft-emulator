@@ -434,4 +434,5 @@ input[type="text"], input[type="password"] { border: solid 1px #ccc; padding: 3p
 
 label { display: block; }
 
+#console { display: block; font-family: monospace; white-space: pre; }
 #console .error { color: red; }
