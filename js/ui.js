@@ -154,6 +154,11 @@
 					//console.log("{Lua} " + e.data);
 					break;
 				}
+				case "READ":{
+					var value = prompt();
+					worker.postMessage({type:"CALL_RETURN", value:value});
+					break;
+				}
 			}
 		};
 		worker.addEventListener("message", handleEvent);
