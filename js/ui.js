@@ -97,7 +97,7 @@
 		}
 		//--------------------------------------------------------------------------
 		
-		var worker = new Worker('js/lua_worker.js');
+		var worker = new Worker('js/lua_worker.js?_t='+Math.random());
 		
 		var $console = $('#console');
 
