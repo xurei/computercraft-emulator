@@ -7,5 +7,5 @@
 		return out;
 	};
 	
-	CCAPI.peripheralTypes["template"].constructor = CCAPI.Template;
+	CCAPI.peripheralTypes["${template}"].constructor = CCAPI.${template};
 })(window.CCAPI);
