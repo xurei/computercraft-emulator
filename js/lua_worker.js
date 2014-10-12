@@ -56,7 +56,7 @@ function jsontotable(json)
 
 function load_lua(src) {
 	var xhr = new XMLHttpRequest();
-	xhr.open("GET", src, false);
+	xhr.open("GET", src+"?_t="+Math.random(), false);
 	xhr.send();
 	if (C.luaL_dostring(L, xhr.responseText) != 0)
 	{
