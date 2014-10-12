@@ -48,8 +48,6 @@
 	<script src="js/jquery.min.js"></script>
 	<?/*<script src="js/jsLogger.js" type="text/javascript"></script>*/?>
 	<script src="js/jquery.tmpl.min.js"></script>
-	<script src="js/lua.vm.js"></script>
-	<script src="js/lua.vm.extend.js"></script>
 	<script src="js/util.js"></script>
 	<script src="js/api.js"></script>
 	
