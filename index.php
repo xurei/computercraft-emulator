@@ -5,9 +5,23 @@
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <body>
+	<div id="header">
+		<ul class="fright">
+			<li><a href="http://www.xurei-design.be">xurei-design</a></li>
+		</ul>
+		<ul>
+			<li><a href="javascript:;" class="about-link">About</a></li>
+			<?php
+			/*
+			<li><a href="javascript:;">Donate</a></li>
+			*/?>
+		</ul>
+	</div>
 	<div id="main" class="row-fluid">
 		<section id="left-pane">
 			<div id="editor">print("hello world !")</div>
+		</section>
+		<section id="resize-line">
 		</section>
 		<div id="sides-pane">
 			<ul>
@@ -24,13 +38,17 @@
 		</div>
 		<section id="right-pane">
 			<div class="side side-term active">
-				<pre class="side-content" id="term"></pre>
+				<div class="side-content">
+					<pre id="term"></pre>
+				</div>
 			</div>
 			<div class="side side-console">
 				<div class="side-header">
 					<a id="console-clear" href="javascript:;">Clear</a>
 				</div>
-				<pre class="side-content" id="console"></pre>
+				<div class="side-content">
+					<pre id="console"></pre>
+				</div>
 			</div>
 			<?php 
 			$sides = array("top","bottom","left","right","front","back");
@@ -62,6 +80,7 @@
 	</script>
 
 	<script src="js/ui.js?_t=<?=rand()?>"></script>
+	<script src="js/nav.js?_t=<?=rand()?>"></script>
 	
 	<?php if (!file_exists("/home/olivier")): ?>
 	<?php $ga_code=""; if (file_exists(dirname(__FILE__)."/ga_code.txt")) $ga_code=file_get_contents(dirname(__FILE__)."/ga_code.txt"); ?>
@@ -79,5 +98,8 @@
 		<script src="/cssrefresh.js" type="text/javascript"></script>
 	<?php endif ?>
 	
+	<div class="popup-overlay" id="about-page">
+		<?php include "about.php" ?>
+	</div>
 </body>
 </html>

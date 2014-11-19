@@ -1,0 +1,118 @@
+html.split-started *
+{
+	user-select: none;
+	-moz-user-select: none;
+	-webkit-user-select: none;
+	-ms-user-select: none;
+}
+
+$sides-pane-width: 48px;
+$resize-line-width: 4px;
+#sides-pane
+{
+	position: relative;
+	z-index: 1;
+	display: block;
+	float: left;
+	margin-left: - $sides-pane-width;
+	width: $sides-pane-width;
+	padding-left: $resize-line-width;
+	@include box-sizing(border-box);
+	ul
+	{
+		list-style: none;
+		padding: 0;
+		li
+		{
+			height: $sides-pane-width;
+			border: solid 1px silver;
+			border-left: none;
+			border-top: none;
+			&:first-of-type
+			{
+				border-top: solid 1px silver;
+			}
+			font-size: 0.8rem;
+			text-align: center;
+			line-height: $sides-pane-width / 3;
+			
+			.periph
+			{
+				font-size: 0.7rem;
+			}
+			
+			&.active
+			{
+				background: yellow;
+			}
+		}
+	}
+}
+%pane
+{
+	height: 100%;
+	float: left;
+	margin: 0;
+	position: relative;
+	@include box-sizing(border-box);
+	z-index: 0;
+}
+#left-pane
+{
+	@extend %pane;
+	width: 40%;
+	padding-right: $sides-pane-width;
+}
+#resize-line
+{
+	@extend %pane;
+	background: silver;
+	width: $resize-line-width;
+	margin-left: - $sides-pane-width;
+	cursor: col-resize;
+	z-index: 100;
+}
+#right-pane
+{
+	@extend %pane;
+	width: 60%;	
+	padding-left: 10px;
+	overflow: auto;
+	
+	$header-height: 30px;
+	.side-header
+	{
+		@include box-sizing(border-box);
+		position: relative;
+		height: $header-height;
+		z-index: 1;
+	}
+	.side-content
+	{
+		@include box-sizing(border-box);
+		position: relative;
+		height: 100%;
+		padding-top: $header-height;
+		margin-top: -$header-height;
+		z-index: 0;
+	}
+	.side
+	{
+		height: 100%;
+		@include box-sizing(border-box);
+		display: none;
+		position: relative;
+		
+		&.active
+		{
+			display: block;
+		}
+	}
+	//.side-content
+	//{
+	//	position: absolute;
+	//	top: $header-height;
+	//	bottom: 0;
+	//	width: 100%;
+	//}
+}

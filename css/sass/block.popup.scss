@@ -1,0 +1,58 @@
+.popup-overlay
+{
+	background: rgba(#000, 0.3);
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 1000;
+	
+	overflow-y: auto;
+	overflow-x: hidden;
+	
+	display: none;
+	
+	&.active
+	{
+		display: block;
+	}
+}
+
+.popup-page
+{
+	width: 62%;
+	min-width: 320px;
+	max-width: 800px;
+	position: absolute;
+	top: 16%;
+	left: 50%;
+	margin-bottom: 100px;
+	
+	> .content
+	{
+		@include box-sizing(border-box);
+		width: 100%;
+		background: #fff;
+		padding: 15px 23px;
+		margin-left: -50%;
+		position: relative;
+	}
+}
+
+.popup-close
+{
+	cursor: pointer;
+	position: absolute;
+	right: 10px;
+	top: 10px;
+	width: 10px;
+	height: 12px;
+	padding: 3px;
+	line-height: 12px;
+	font-size: 20px;
+	&:hover
+	{
+		background: #eee;
+	}
+}

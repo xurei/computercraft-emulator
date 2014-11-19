@@ -1,5 +1,6 @@
 @import "breakpoints.scss";
 
+@import url(http://fonts.googleapis.com/css?family=Open+Sans);
 @import "compass/css3/text-shadow";
 @import "compass/css3/border-radius";
 @import "compass/css3/box-shadow";
@@ -12,8 +13,12 @@
 @import "compass/css3/background-size";
 @import "compass/css3/columns";
 
-@import "util/bootstrap.responsive.scaffholding.scss";
+//@import "util/bootstrap.responsive.scaffholding.scss";
+@import "typography.scss";
 @import "block.ui-on-off.scss";
+@import "block.split-pane.scss";
+@import "block.header.scss";
+@import "block.popup.scss";
 @import "ui.forms.scss";
 
 @font-face {
@@ -23,6 +28,12 @@
   src: url(../assets/mc.woff) format('woff');
 }
 
+html
+{
+	font-family: 'Open Sans', sans-serif;
+	font-size: 12px;
+}
+
 #main
 {
 	position: absolute;
@@ -30,102 +41,6 @@
 	right: 0;
 	top: 0;
 	bottom: 0;
-}
-
-#left-pane, #right-pane
-{
-	height: 100%;
-	float: left;
-	margin: 0;
-	position: relative;
-	@include box-sizing(border-box);
-	z-index: 0;
-}
-$sides-pane-width: 48px;
-#sides-pane
-{
-	position: relative;
-	z-index: 1;
-	display: block;
-	float: left;
-	margin-left: - $sides-pane-width;
-	width: $sides-pane-width;
-	ul
-	{
-		list-style: none;
-		padding: 0;
-		li
-		{
-			height: $sides-pane-width;
-			border: solid 1px silver;
-			border-left: none;
-			border-top: none;
-			&:first-of-type
-			{
-				border-top: solid 1px silver;
-			}
-			font-size: 0.8rem;
-			text-align: center;
-			line-height: $sides-pane-width / 3;
-			
-			.periph
-			{
-				font-size: 0.7rem;
-			}
-			
-			&.active
-			{
-				background: yellow;
-			}
-		}
-	}
-}
-#left-pane
-{
-	width: 40%;
-	padding-right: $sides-pane-width;
-}
-#right-pane
-{
-	width: 60%;	
-	padding-left: 10px;
-	overflow: auto;
-	
-	$header-height: 30px;
-	.side-header
-	{
-		@include box-sizing(border-box);
-		position: relative;
-		height: $header-height;
-		z-index: 1;
-	}
-	.side-content
-	{
-		@include box-sizing(border-box);
-		position: relative;
-		height: 100%;
-		padding-top: $header-height;
-		margin-top: -$header-height;
-		z-index: 0;
-	}
-	.side
-	{
-		height: 100%;
-		@include box-sizing(border-box);
-		display: none;
-		
-		&.active
-		{
-			display: block;
-		}
-	}
-	//.side-content
-	//{
-	//	position: absolute;
-	//	top: $header-height;
-	//	bottom: 0;
-	//	width: 100%;
-	//}
 }
 
 #editor
@@ -160,4 +75,15 @@ label
 	{
 		color: red;
 	}
+}
+
+#right-pane .side-term .side-content
+{
+	margin-top: 0;
+	padding-top: 0;
+}
+
+.fright
+{
+	float: right;
 }

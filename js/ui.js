@@ -19,6 +19,7 @@
 			$(this).parent().find('.togglable').removeClass('active');
 			$(this).addClass('active');
 		});
+		//--------------------------------------------------------------------------
 		
 		$('#sides-pane .side').click(function(){
 			var side = $(this).attr('data-side');
@@ -145,6 +146,7 @@
 					  type: "error" // also warning and information
 					}]);
 					$console.append("ERROR : Line "+(line+1)+" - "+data[2]+"<br>");
+					$('#sides-pane .side[data-side="console"]').click();
 					break;
 				}
 				case "PRINT":{
@@ -216,4 +218,37 @@
 		if (code != null && code != undefined)
 			window.editor.setValue(code);
 	};
+
+	//----------------------------------------------------------------------------
+	//Split panes
+	{
+		$html = $('html');
+		$left_pane = $('#left-pane');
+		$right_pane = $('#right-pane');
+		$sides_pane = $('#sides-pane');
+		var started = false;
+		$('#resize-line').on('mousedown', function(){
+			started = true;
+			$html.addClass('split-started');
+		});
+		$('html').on('mouseup', function(){
+			if (started)
+			{
+				started = false;
+				$html.removeClass('split-started');
+			}
+		});
+		$html.on('mousemove', function(e){
+			if (started)
+			{
+				var posX = e.clientX + $sides_pane.width();
+				var width = $html.width();
+				var ratio = Math.round(10000*posX/width)/100.0;
+				$left_pane.css('width', ratio + "%");
+				$right_pane.css('width', (100-ratio) + "%");
+			}
+		});
+	}
+
+	//----------------------------------------------------------------------------
 })(jQuery);
