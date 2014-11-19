@@ -19,7 +19,7 @@
 		
 		<h2>Fork it on Github !</h2>
 		<p>
-			You are a developer ? You want to help this project ? Fork it on github, it's open source ! 
+			You are a developer ? You want to help this project ? <a href="https://github.com/xurei/computercraft-emulator" target="_blank">Fork it on github</a>, it's open source ! 
 		</p>
 		
 		<h2>About the author</h2>
