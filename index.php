@@ -38,6 +38,9 @@
 		</div>
 		<section id="right-pane">
 			<div class="side side-term active">
+				<div class="side-header">
+					<a id="term-clear" href="javascript:;">Clear</a>
+				</div>
 				<div class="side-content">
 					<pre id="term"></pre>
 				</div>

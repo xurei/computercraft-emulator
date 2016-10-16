@@ -36,6 +36,12 @@
 			$('#console').text('');
 		});
 		//--------------------------------------------------------------------------
+		
+		$('#term-clear').click(function(){
+			CCAPI.peripherals['term'].clear();
+			$('#console').text('');
+		});
+		//--------------------------------------------------------------------------
 
 		var activable_fn = function (e) {
 			if (e.target == e.currentTarget)
@@ -94,7 +100,7 @@
 				type: periph._periph_name,
 				methods: []
 			};
-			for (i in periph) {
+			for (var i in periph) {
 				if (i.substring(0,2) != "__")
 					out.methods.push(i);
 			}

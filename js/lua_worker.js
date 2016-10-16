@@ -96,9 +96,9 @@ function init()
 		Lua5_1.Runtime.addFunction(function(L)
 		{
 			var args = [];
-			var str;
-			var prefix = str = C.lua_tostring(L, i);
+			var prefix = C.lua_tostring(L, 1);
 			var i = 2;
+			var str;
 			while ((str = C.lua_tostring(L, i)) != "") {
 				args.push(str);
 				i++;

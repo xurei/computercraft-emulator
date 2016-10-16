@@ -79,12 +79,14 @@ $resize-line-width: 4px;
 	padding-left: 10px;
 	overflow: auto;
 	
-	$header-height: 30px;
+	$header-height: 27px;
 	.side-header
 	{
 		@include box-sizing(border-box);
 		position: relative;
 		height: $header-height;
+		line-height: $header-height;
+		padding: 0;
 		z-index: 1;
 	}
 	.side-content

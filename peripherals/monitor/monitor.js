@@ -18,6 +18,8 @@
 			this.elem.css(this.curStyle);
 			this.textElem.text("");
 			this.lines = {};
+			this.x = 1;
+			this.y = 1;
 		};
 		//------------------------------------------------------------------------------	
 		
