@@ -15,9 +15,13 @@ input
 	&:after
 	{
 		position: relative;
-		color: #bbb;
+		color: #999;
 		font-size: 0.9rem;
 		z-index: 1;
+		display: inline-block;
+		text-align: right;
+		width: 50px;
+		margin-left: -56px;
 	}
 	input[type="text"]
 	{
@@ -27,13 +31,21 @@ input
 	}
 }
 
+.input-unit-percent
+{
+	@extend %input-unit;
+	&:after
+	{
+		content: "%";
+	}
+}
+
 .input-unit-mb
 {
 	@extend %input-unit;
 	&:after
 	{
 		content: "mB";
-		margin-left: -28px;
 	}
 }
 
@@ -43,6 +55,5 @@ input
 	&:after
 	{
 		content: "mB/tick";
-		margin-left: -56px;
 	}
 }

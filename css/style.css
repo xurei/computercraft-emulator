@@ -32,7 +32,7 @@ html.split-started * { user-select: none; -moz-user-select: none; -webkit-user-s
 
 #main { padding-top: 22px; }
 
-#header { position: fixed; top: 0; left: 0; width: 100%; background: #49483E; background: #3c3c33; color: #ddd; height: 22px; line-height: 20px; z-index: 1000; padding: 2px 20px 0 55px; -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
+#header { position: fixed; top: 0; left: 0; width: 100%; background: #49483E; background: #3c3d34; color: #ddd; height: 22px; line-height: 20px; z-index: 1000; padding: 2px 20px 0 55px; -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
 #header:before { content: ""; background: #7ab14d; height: 2px; display: block; position: absolute; left: 0; top: 0; right: 0; }
 #header a { color: inherit; text-decoration: none; }
 #header > ul { padding: 0; margin: 0; list-style: none; display: inline-block; }
@@ -50,12 +50,14 @@ html.split-started * { user-select: none; -moz-user-select: none; -webkit-user-s
 
 input[type="text"], input[type="password"] { border: solid 1px #ccc; padding: 3px 5px; -moz-border-radius: 3px; -webkit-border-radius: 3px; border-radius: 3px; }
 
-.input-unit-mb:after, .input-unit-mb-per-tick:after { position: relative; color: #bbb; font-size: 0.9rem; z-index: 1; }
-.input-unit-mb input[type="text"], .input-unit-mb-per-tick input[type="text"] { position: relative; background: none; z-index: 2; }
+.input-unit-percent:after, .input-unit-mb:after, .input-unit-mb-per-tick:after { position: relative; color: #999; font-size: 0.9rem; z-index: 1; display: inline-block; text-align: right; width: 50px; margin-left: -56px; }
+.input-unit-percent input[type="text"], .input-unit-mb input[type="text"], .input-unit-mb-per-tick input[type="text"] { position: relative; background: none; z-index: 2; }
 
-.input-unit-mb:after { content: "mB"; margin-left: -28px; }
+.input-unit-percent:after { content: "%"; }
 
-.input-unit-mb-per-tick:after { content: "mB/tick"; margin-left: -56px; }
+.input-unit-mb:after { content: "mB"; }
+
+.input-unit-mb-per-tick:after { content: "mB/tick"; }
 
 @font-face { font-family: 'mc'; font-style: normal; font-weight: 400; src: url(../assets/mc.woff) format("woff"); }
 html { font-family: 'Open Sans', sans-serif; font-size: 12px; }

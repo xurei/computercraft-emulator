@@ -4,8 +4,8 @@
 		var out = CCAPI.basePeripheral($elem);
 
 		out._addOnOffGetter("getConnected", '.is-connected');
-		out._addOnOffGetter("getActive", '.is-connected');
-		out._addOnOffGetter("isActivelyCooled", '.is-connected');
+		out._addOnOffGetter("getActive", '.is-active');
+		out._addOnOffGetter("isActivelyCooled", '.is-actively-cooled');
 		//--------------------------------------------------------------------------
 
 		out._addNumGetter('getNumberOfControlRods', '[name="nb-control-rods"]');
@@ -23,17 +23,13 @@
 		out._addNumGetter('getHotFluidAmount', '[name="hot-fluid-amount"]'); 
 		out._addNumGetter('getFuelReactivity', '[name="fuel-reactivity"]');
 		out._addNumGetter('getFuelConsumedLastTick', '[name="fuel-consumption"]');
+		out._addNumGetter('getControlRodLevel', '[name="control-rod-level"]');
 		//--------------------------------------------------------------------------
 		
 		out.getControlRodName = function (i) {
 			console.log("getControlRodName() Not supported yet");
 		};
 		//--------------------------------------------------------------------------
-		
-		out.getControlRodLevel = function (i) {
-			console.log("getControlRodLevel() Not supported yet");
-		};
-		//-------------------------------------------------------------------------- 
 		 
 		out.setActive = function (b) {
 			if (b=="true")
@@ -43,13 +39,13 @@
 		};
 		//-------------------------------------------------------------------------- 
 		 
-		out.setAllControlRodLevels = function () {
-			console.log("setAllControlRodLevels() Not supported yet");
+		out.setAllControlRodLevels = function (level) {
+			$elem.find('[name="control-rod-level"]').val(level);
 		};
 		//-------------------------------------------------------------------------- 
 		 
-		out.setControlRodLevel = function () {
-			console.log("setControlRodLevel() Not supported yet");
+		out.setControlRodLevel = function (index, level) {
+			out.setAllControlRodLevels(level);
 		};
 		//-------------------------------------------------------------------------- 
 		
@@ -61,5 +57,5 @@
 		return out;
 	};
 	
-	CCAPI.peripheralTypes["bigreactors-computer-port"].constructor = CCAPI.BigReactorPort;
+	CCAPI.peripheralTypes["bigreactors-reactor-computer-port"].constructor = CCAPI.BigReactorPort;
 })(window.CCAPI);
