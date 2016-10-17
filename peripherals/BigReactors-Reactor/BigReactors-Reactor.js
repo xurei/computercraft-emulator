@@ -57,5 +57,5 @@
 		return out;
 	};
 	
-	CCAPI.peripheralTypes["bigreactors-reactor-computer-port"].constructor = CCAPI.BigReactorPort;
+	CCAPI.peripheralTypes["BigReactors-Reactor"].constructor = CCAPI.BigReactorPort;
 })(window.CCAPI);

@@ -13,6 +13,41 @@ function peripheral.wrap(side)
 end
 -- -----------------------------------------------------------------------------
 
+function peripheral.find(type, fnFilter)
+    return peripheral._find(type, fnFilter, {"top","left","right","front","back","bottom"})
+end
+
+local function subrange(t, first, last)
+  local sub = {}
+  for i=first,last do
+    sub[#sub + 1] = t[i]
+  end
+  return sub
+end
+
+function peripheral._find(type, fnFilter, acc)
+    if (#acc == 0) then
+        return nil
+    end
+
+    local side = acc[1]
+
+    if (peripheral._isRightType(side, type, fnFilter)) then
+        return peripheral.wrap(side), peripheral._find(type, fnFilter, subrange(acc, 2, #acc))
+    else
+        return peripheral._find(type, fnFilter, subrange(acc, 2, #acc))
+    end
+end
+-- -----------------------------------------------------------------------------
+
+function peripheral._isRightType(side, type, fnFilter)
+	local object = peripheral._getObject(side)
+	-- TODO handle names
+	local out = (peripheral.getType(side) == type and (fnFilter == nil or fnFilter("", peripheral._getObject(side))))
+	return out
+end
+-- -----------------------------------------------------------------------------
+
 function peripheral.callAsync(side, key, ...)
 	return peripheral._callAsync(side, key, arg)
 end
