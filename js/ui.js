@@ -5,7 +5,8 @@
 
 		CCAPI.registerPeripheral("monitor", "ComputerCraft Monitor");
 		CCAPI.registerPeripheral("redstone", "Redstone");
-		CCAPI.registerPeripheral("bigreactors-reactor-computer-port", "BigReactors Computer Port");
+		CCAPI.registerPeripheral("bigreactors-reactor-computer-port", "BigReactors Reactor Computer Port");
+		CCAPI.registerPeripheral("bigreactors-turbine-computer-port", "BigReactors Turbine Computer Port");
 		
 		var current_side = null;
 		

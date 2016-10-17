@@ -1,0 +1,37 @@
+<div class="periph-bigreactors-turbine-computer-port">
+	<div class="ui-on-off is-connected activable active">Connected</div>
+	<div class="ui-on-off is-active activable">Active</div>
+	<div class="ui-on-off is-active activable">Inductor Engaged</div>
+
+	<table>
+		<tr><td>Energy</td><td><input type="text" name="energy-stored" value="0"> / 10M RF</td></tr>
+		<tr><td>Rotor Speed</td><td class="input-unit-rpm"><input type="text" name="rotor-speed" value="0"></td></tr>
+        <tr><td>&nbsp;</td></tr>
+
+		<tr><td>Fluid Max Amount</td><td class="input-unit-mb"><input type="text" name="fluid-amount-max" value="0"></td></tr>
+		<tr><td>Fluid Input Amount</td><td><span class="input-unit-mb"><input type="text" name="input-amount" value="0"></span> / Fluid Max Amount</td></tr>
+		<tr><td>Fluid Input Type</td><td>
+            <select name="input-type">
+                <option>None</option>
+                <option>Steam</option>
+            </select>
+        </td></tr>
+
+        <tr><td>Fluid Output Amount</td><td><span class="input-unit-mb"><input type="text" name="output-amount" value="0"></span> / Fluid Max Amount</td></tr>
+        <tr><td>Fluid Output Type</td><td>
+            <select name="output-type">
+                <option>None</option>
+                <option>Water</option>
+            </select>
+        </td></tr>
+
+        <tr><td><tr><td>&nbsp;</td></tr></td></tr>
+		<tr><td>Fluid Flow Rate</td><td class="input-unit-mb-per-tick"><input type="text" name="flow-rate" value="0"></td></tr>
+		<tr><td>Fluid Flow Rate Max</td><td class="input-unit-mb-per-tick"><input type="text" name="flow-rate-max" value="0"></td></tr>
+		<tr><td>Fluid Flow Rate Max Max</td><td class="input-unit-mb-per-tick"><input type="text" name="flow-rate-max-max" value="2000"></td></tr>
+        <tr><td><tr><td>&nbsp;</td></tr></td></tr>
+
+		<tr><td>Energy Production</td><td><input type="text" name="energy-produced-last-tick" value="0"></td></tr>
+
+	</table>
+</div>

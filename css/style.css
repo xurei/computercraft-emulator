@@ -50,14 +50,16 @@ html.split-started * { user-select: none; -moz-user-select: none; -webkit-user-s
 
 input[type="text"], input[type="password"] { border: solid 1px #ccc; padding: 3px 5px; -moz-border-radius: 3px; -webkit-border-radius: 3px; border-radius: 3px; }
 
-.input-unit-percent:after, .input-unit-mb:after, .input-unit-mb-per-tick:after { position: relative; color: #999; font-size: 0.9rem; z-index: 1; display: inline-block; text-align: right; width: 50px; margin-left: -56px; }
-.input-unit-percent input[type="text"], .input-unit-mb input[type="text"], .input-unit-mb-per-tick input[type="text"] { position: relative; background: none; z-index: 2; }
+.input-unit-percent:after, .input-unit-mb:after, .input-unit-mb-per-tick:after, .input-unit-rpm:after { position: relative; color: #999; font-size: 0.9rem; z-index: 1; display: inline-block; text-align: right; width: 50px; margin-left: -56px; margin-right: 6px; }
+.input-unit-percent input[type="text"], .input-unit-mb input[type="text"], .input-unit-mb-per-tick input[type="text"], .input-unit-rpm input[type="text"] { position: relative; background: none; z-index: 2; }
 
 .input-unit-percent:after { content: "%"; }
 
 .input-unit-mb:after { content: "mB"; }
 
 .input-unit-mb-per-tick:after { content: "mB/tick"; }
+
+.input-unit-rpm:after { content: "RPM"; }
 
 @font-face { font-family: 'mc'; font-style: normal; font-weight: 400; src: url(../assets/mc.woff) format("woff"); }
 html { font-family: 'Open Sans', sans-serif; font-size: 12px; }
