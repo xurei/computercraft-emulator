@@ -1,0 +1,27 @@
+#pastebin-result
+{
+	text-align: center;
+
+	input {
+		text-align: center;
+		width: 100%;
+		font-size: 1.2em;
+	}
+
+	&.loading {
+		div.loading {
+			display: block;
+		}
+		div.loaded {
+			display: none;
+		}
+	}
+	&:not(.loading) {
+		div.loading {
+			display: none;
+		}
+		div.loaded {
+			display: block;
+		}
+	}
+}

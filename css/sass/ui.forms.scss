@@ -59,6 +59,24 @@ input
 	}
 }
 
+.input-unit-rf
+{
+	@extend %input-unit;
+	&:after
+	{
+		content: "RF";
+	}
+}
+
+.input-unit-rf-per-tick
+{
+	@extend %input-unit;
+	&:after
+	{
+		content: "RF/tick";
+	}
+}
+
 .input-unit-rpm
 {
 	@extend %input-unit;

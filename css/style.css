@@ -17,6 +17,8 @@ html.split-started * { user-select: none; -moz-user-select: none; -webkit-user-s
 #sides-pane ul li:hover { background: #eee; }
 #sides-pane ul li .periph { font-size: 0.7rem; }
 #sides-pane ul li.active { background: #7ab14d; color: #fff; }
+#sides-pane ul li.separator { border-right: none; }
+#sides-pane ul li.separator:hover { background: none; }
 
 #left-pane, #resize-line, #right-pane { height: 100%; float: left; margin: 0; position: relative; -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; z-index: 0; }
 
@@ -50,16 +52,27 @@ html.split-started * { user-select: none; -moz-user-select: none; -webkit-user-s
 .popup-close { cursor: pointer; position: absolute; right: 10px; top: 10px; width: 10px; height: 12px; padding: 3px; line-height: 12px; font-size: 20px; }
 .popup-close:hover { background: #eee; }
 
+#pastebin-result { text-align: center; }
+#pastebin-result input { text-align: center; width: 100%; font-size: 1.2em; }
+#pastebin-result.loading div.loading { display: block; }
+#pastebin-result.loading div.loaded { display: none; }
+#pastebin-result:not(.loading) div.loading { display: none; }
+#pastebin-result:not(.loading) div.loaded { display: block; }
+
 input[type="text"], input[type="password"] { border: solid 1px #ccc; padding: 3px 5px; -moz-border-radius: 3px; -webkit-border-radius: 3px; border-radius: 3px; }
 
-.input-unit-percent:after, .input-unit-mb:after, .input-unit-mb-per-tick:after, .input-unit-rpm:after { position: relative; color: #999; font-size: 0.9rem; z-index: 1; display: inline-block; text-align: right; width: 50px; margin-left: -56px; margin-right: 6px; }
-.input-unit-percent input[type="text"], .input-unit-mb input[type="text"], .input-unit-mb-per-tick input[type="text"], .input-unit-rpm input[type="text"] { position: relative; background: none; z-index: 2; }
+.input-unit-percent:after, .input-unit-mb:after, .input-unit-mb-per-tick:after, .input-unit-rf:after, .input-unit-rf-per-tick:after, .input-unit-rpm:after { position: relative; color: #999; font-size: 0.9rem; z-index: 1; display: inline-block; text-align: right; width: 50px; margin-left: -56px; margin-right: 6px; }
+.input-unit-percent input[type="text"], .input-unit-mb input[type="text"], .input-unit-mb-per-tick input[type="text"], .input-unit-rf input[type="text"], .input-unit-rf-per-tick input[type="text"], .input-unit-rpm input[type="text"] { position: relative; background: none; z-index: 2; }
 
 .input-unit-percent:after { content: "%"; }
 
 .input-unit-mb:after { content: "mB"; }
 
 .input-unit-mb-per-tick:after { content: "mB/tick"; }
+
+.input-unit-rf:after { content: "RF"; }
+
+.input-unit-rf-per-tick:after { content: "RF/tick"; }
 
 .input-unit-rpm:after { content: "RPM"; }
 

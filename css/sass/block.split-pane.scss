@@ -48,6 +48,13 @@ $resize-line-width: 4px;
 				background: #7ab14d;
 				color: #fff;
 			}
+
+			&.separator {
+				border-right: none;
+				&:hover {
+					background: none;
+				}
+			}
 		}
 	}
 }

@@ -34,6 +34,8 @@
 				<li data-side="back"    class="side togglable">back<div class="periph"></div></li>
 				<li data-side="bottom"  class="side togglable">bottom<div class="periph"></div></li>
 				<li class="run">Run</li>
+				<li class="separator"></li>
+				<li class="pastebin">Send to Pastebin</li>
 			</ul>
 		</div>
 		<section id="right-pane">
@@ -70,39 +72,52 @@
 		</section>
 	</div>
 
+	<div class="popup-overlay" id="about-page">
+		<?php include "about.php" ?>
+	</div>
+	<div class="popup-overlay" id="pastebin-result">
+		<div class="popup-page">
+			<div class="content">
+				<div class="popup-close keybind-esc">&times;</div>
+				<div class="loading">Please wait...</div>
+				<div class="loaded">
+					<p>Paste this on your computer :</p>
+					<input type="text" value="pastebin get DFzedsCe startup" id="pastebin-result-command"><br>
+					<a id="pastebin-result-link" href="http://www.pastebin.com/">Link to the paste</a>
+				</div>
+			</div>
+		</div>
+	</div>
+
 	<script src="js/jquery.min.js"></script>
 	<?/*<script src="js/jsLogger.js" type="text/javascript"></script>*/?>
 	<script src="js/jquery.tmpl.min.js"></script>
 	<script src="js/api.js?_t=<?=rand()?>"></script>
-	
+
 	<script src="js/ace/ace.js" type="text/javascript"></script>
 	<script>
-	    window.editor = ace.edit("editor");
-	    editor.setTheme("ace/theme/monokai");
-	    editor.getSession().setMode("ace/mode/lua");
+		window.editor = ace.edit("editor");
+		editor.setTheme("ace/theme/monokai");
+		editor.getSession().setMode("ace/mode/lua");
 	</script>
 
 	<script src="js/ui.js?_t=<?=rand()?>"></script>
 	<script src="js/nav.js?_t=<?=rand()?>"></script>
-	
+
 	<?php if (!file_exists("/home/olivier")): ?>
-	<?php $ga_code=""; if (file_exists(dirname(__FILE__)."/ga_code.txt")) $ga_code=file_get_contents(dirname(__FILE__)."/ga_code.txt"); ?>
+		<?php $ga_code=""; if (file_exists(dirname(__FILE__)."/ga_code.txt")) $ga_code=file_get_contents(dirname(__FILE__)."/ga_code.txt"); ?>
 		<script>
 			var _gaq = _gaq || [];
-		  _gaq.push(['_setAccount', '<?= $ga_code ?>']);
-		  _gaq.push(['_trackPageview']);
-		  (function() {
-		    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-		    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-		    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-		  })();
+			_gaq.push(['_setAccount', '<?= $ga_code ?>']);
+			_gaq.push(['_trackPageview']);
+			(function() {
+				var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+				ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+				var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+			})();
 		</script>
 	<?php else: ?>
 		<script src="/cssrefresh.js" type="text/javascript"></script>
 	<?php endif ?>
-	
-	<div class="popup-overlay" id="about-page">
-		<?php include "about.php" ?>
-	</div>
 </body>
 </html>

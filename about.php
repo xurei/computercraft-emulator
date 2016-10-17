@@ -28,10 +28,3 @@
 		</p> -->
 	</div>
 </div>
-<script>
-	(function($){
-		$('.popup-close').click(function(){
-			$('.popup-overlay').removeClass('active');
-		});
-	})(jQuery);
-</script>

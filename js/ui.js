@@ -189,7 +189,7 @@
 			else {
 				$this.attr('data-running', "1");
 				$this.text("Stop");
-
+				
 				localStorage.setItem('code', text);
 				
 				var periph = {
@@ -204,10 +204,46 @@
 				
 				worker.postMessage({type:"START", code: text, peripherals: periph});
 			}
-				
+			
 			//worker.postMessage('L', eval("(" + JSON.stringify(L) + ")"));
 			//lua_parser.parse(text);
 			//Lua.eval(L, text);
+		});
+		//--------------------------------------------------------------------------
+		
+		$('#sides-pane .pastebin').click(function(){
+			var text = "" + window.editor.getValue();
+			$('#pastebin-result').addClass('active');
+			$('#pastebin-result').addClass('loading');
+			
+			$.ajax({
+				url: "pastebin.php",
+				data: {
+					action: 'new_paste',
+					code: text
+				},
+				method: "POST",
+				success: function(data) {
+					function baseName(str)
+					{
+						var base = new String(str).substring(str.lastIndexOf('/') + 1);
+						if(base.lastIndexOf(".") != -1)
+							base = base.substring(0, base.lastIndexOf("."));
+						return base;
+					}
+					
+					var key = baseName(data);
+					
+					$('#pastebin-result-command').val('pastebin get '+key+' startup');
+					$('#pastebin-result-link').attr('href', data);
+					$('#pastebin-result').removeClass('loading');
+				}
+			});
+		});
+		//--------------------------------------------------------------------------
+		
+		$('#pastebin-result input').click(function() {
+			$(this).select();
 		});
 		//--------------------------------------------------------------------------
 		
