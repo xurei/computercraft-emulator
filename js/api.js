@@ -86,8 +86,10 @@
 			
 			return new CCAPI.peripheralTypes[name].constructor($elem); 
 		}
-		else
+		else {
 			console.error("No peripheral with this name : "+name);
+			return null;
+		}
 	};
 	//----------------------------------------------------------------------------
 	

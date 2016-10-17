@@ -5,8 +5,6 @@
 
 		CCAPI.registerPeripheral("monitor", "ComputerCraft Monitor");
 		CCAPI.registerPeripheral("redstone", "Redstone");
-		CCAPI.registerPeripheral("BigReactors-Reactor", "BigReactors Reactor Computer Port");
-		CCAPI.registerPeripheral("BigReactors-Turbine", "BigReactors Turbine Computer Port");
 		
 		var current_side = null;
 		
@@ -71,11 +69,13 @@
 				localStorage.setItem('side_'+side, periph_type);
 				
 				CCAPI.peripherals[side] = CCAPI.buildPeripheral(periph_type, $side);
-				CCAPI.peripherals[side]._periph_name = periph_type;
-				$side.text('').append(CCAPI.peripherals[side].elem);
-				$side_periph.text(periph_type);
-				$side.find('.activable').click();
-				activable_bind($side);
+				if (typeof (CCAPI.peripherals[side]) !== "undefined" && CCAPI.peripherals[side] != null) {
+					CCAPI.peripherals[side]._periph_name = periph_type;
+					$side.text('').append(CCAPI.peripherals[side].elem);
+					$side_periph.text(periph_type);
+					$side.find('.activable').click();
+					activable_bind($side);
+				}
 			}
 		};
 		
