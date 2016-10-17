@@ -13,9 +13,11 @@
 		
 		out.needRefresh = true;
 		
+		var textScale = 1;
+		
 		out.clear = function()	{
 			//this.clearStyle = this.curStyle;
-			this.elem.css(this.curStyle);
+			$elem.css(this.curStyle);
 			this.textElem.text("");
 			this.lines = {};
 			this.x = 1;
@@ -35,17 +37,19 @@
 		//------------------------------------------------------------------------------	
 		
 		out.getWidth = function() {
-			return [100];
+			var w = Math.floor($elem.parent().width() / (20 * textScale));
+			return [Math.max(1, w-1)];
 		};
 		//------------------------------------------------------------------------------	
 
 		out.getHeight = function() {
-			return [100];
+			var h = Math.floor($elem.parent().height() / (32 * textScale));
+			return [Math.max(1, h-1)];
 		};
 		//------------------------------------------------------------------------------	
 
 		out.getSize = function() {
-			return [100,100];
+			return [this.getWidth()[0], this.getHeight()[0]];
 		};
 		//------------------------------------------------------------------------------	
 		
@@ -82,30 +86,42 @@
 		//------------------------------------------------------------------------------
 
 		out.setBackgroundColor = function(color)	{
-			var k = 32768
+			var k = 32768;
 			while (k >= 1) {
-				if (color & k)
-				{
+				if (color & k) { //Single & on purpose
 					break;
 				}
 				k /= 2;
 			}
-			out.curStyle.background = CCAPI.colors[k]
+			out.curStyle.background = CCAPI.colors[k];
 		};
 		//------------------------------------------------------------------------------	
 
 		out.setTextColor = function(color)	{
-			var k = 32768
+			var k = 32768;
 			while (k >= 1) {
-				if (color & k)
+				if (color & k) { //Single & on purpose
 					break;
+				}
 				k /= 2;
 			}
-			out.curStyle.color = CCAPI.colors[k]
+			out.curStyle.color = CCAPI.colors[k];
 		};
 		//------------------------------------------------------------------------------	
 
 		out.setTextScale = function(ratio)	{
+			ratio = Math.floor(ratio * 2) / 2;
+			
+			//TODO error if ratio not in range 0.5-5
+			if (ratio < 0.5) {
+				ratio = 0.5;
+			}
+			else if (ratio > 5) {
+				ratio = 5;
+			}
+			
+			textScale = ratio;
+			
 			this.textElem.css('font-size', ratio + "em");
 		};
 		//------------------------------------------------------------------------------
@@ -134,17 +150,39 @@
 			if (out.needRefresh){
 				var start = new Date();
 				this.needRefresh = false;
-				this.textElem.text("");
 				
-				var max_y = 0;
-				for (y in this.lines) {
-					if (max_y < parseInt(y))
-						max_y = parseInt(y);
+				var letterW = 20 * textScale;
+				var letterH = 32 * textScale;
+				
+				this.textElem.attr('width', this.textElem.parent().width());
+				this.textElem.attr('height', this.textElem.parent().height());
+				var ctx = this.textElem.get(0).getContext("2d");
+				
+				for (var y in this.lines) {
+					var line = this.lines[y];
+					for (var x in line) {
+						var char = line[x];
+						ctx.font = (28*textScale) + 'px "mc"';
+						ctx.fillStyle = char.style.color;
+						ctx.fillText(char.char, x*letterW,y*letterH);
+						if (char.style.background != undefined) {
+							ctx.fillStyle = char.style.background;
+							ctx.fillRect(x*letterW,y*letterH,letterW,letterH);
+						}
+					}
 				}
 				
-
+				/*this.textElem.find('tr').remove();
+				
 				var max_x = 0;
-				for (y=1; y<=max_y; ++y){
+				var max_y = 0;
+				for (var y in this.lines) {
+					if (max_y < parseInt(y)) {
+						max_y = parseInt(y);
+					}
+				}
+
+				for (y=1; y<=max_y; ++y) {
 					var line = this.lines[y];
 					for (x in line) {
 						if (max_x < parseInt(x)){
@@ -152,18 +190,18 @@
 						}
 					}
 				}
-
+				
+				console.log(this.getWidth()[0], this.getHeight()[0]);
 				var tr = $('<tr></tr>');
-				for (x=1; x<=max_x; ++x)
-					tr.append($('<td style="line-height:20px">&nbsp;</td>'));
+				for (var x=1; x<=this.getWidth()[0]; ++x)
+					tr.append($('<td style="line-height:1px">&nbsp;</td>'));
 				this.textElem.append(tr);
 				
 				for (y=1; y<=max_y; ++y){
 					var line = this.lines[y];
 					var tr = $('<tr></tr>');
 					if (line == undefined) {
-						//for (x=1; x<=50; ++x)
-							tr.append($('<td>&nbsp;</td>'));
+						tr.append($('<td>&nbsp;</td>'));
 					}
 					else {
 						var max_x = 0;
@@ -204,20 +242,10 @@
 						cur_td.text(cur_text);
 						cur_td.attr('colspan', cur_text.length);
 						tr.append(cur_td);
-						
-						/*for (x=1; x<=max_x; ++x){
-							var td = $('<td></td>');
-							if (line[x] != undefined) {
-								td.text(line[x].char);
-								td.css(line[x].style);
-							}
-							tr.append(td);
-						}*/
 					}
 					this.textElem.append(tr);
 				}
-				var elapsed = new Date() - start;
-				console.log(elapsed + " ms");
+				var elapsed = new Date() - start;*/
 			}
 		};
 		//------------------------------------------------------------------------------
@@ -225,8 +253,12 @@
 		var loop = function()
 		{
 			out.__refresh();
-		}
-		setInterval(loop, 200);
+			setTimeout(function() {
+				window.requestAnimationFrame(loop);
+			}, 100);
+		};
+		
+		window.requestAnimationFrame(loop);
 		
 		return out;
 	};

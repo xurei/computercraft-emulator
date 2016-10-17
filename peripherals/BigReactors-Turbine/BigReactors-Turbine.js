@@ -45,18 +45,22 @@
 		//--------------------------------------------------------------------------
 		
 		out.setActive = function (b) {
-			if (b=="true")
+			if (b=="true"){
 				$elem.find('.is-active').addClass('active');
-			else
+			}
+			else {
 				$elem.find('.is-active').removeClass('active');
+			}
 		};
 		//--------------------------------------------------------------------------
 		
 		out.setInductorEngaged = function (b) {
-			if (b=="true")
+			if (b=="true") {
 				$elem.find('.is-inductor-engaged').addClass('active');
-			else
+			}
+			else {
 				$elem.find('.is-inductor-engaged').removeClass('active');
+			}
 		};
 		//--------------------------------------------------------------------------
 		

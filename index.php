@@ -25,8 +25,8 @@
 		</section>
 		<div id="sides-pane">
 			<ul>
-				<li data-side="console" class="side togglable">Console</li>
-				<li data-side="term" class="side togglable active">Term</li>
+				<li data-side="console" class="side togglable active">Console</li>
+				<?php /*<li data-side="term" class="side togglable active">Term</li>*/ ?>
 				<li data-side="top"     class="side togglable">top<div class="periph"></div></li>
 				<li data-side="left"    class="side togglable">left<div class="periph"></div></li>
 				<li data-side="right"   class="side togglable">right<div class="periph"></div></li>
@@ -39,15 +39,15 @@
 			</ul>
 		</div>
 		<section id="right-pane">
-			<div class="side side-term active">
+			<?php /*<div class="side side-term active">
 				<div class="side-header">
 					<a id="term-clear" href="javascript:;">Clear</a>
 				</div>
 				<div class="side-content">
 					<pre id="term"></pre>
 				</div>
-			</div>
-			<div class="side side-console">
+			</div>*/ ?>
+			<div class="side side-console active">
 				<div class="side-header">
 					<a id="console-clear" href="javascript:;">Clear</a>
 				</div>
@@ -101,6 +101,7 @@
 		editor.getSession().setMode("ace/mode/lua");
 	</script>
 
+	<script src="js/requestAnimationFrame.js?_t=<?=rand()?>"></script>
 	<script src="js/ui.js?_t=<?=rand()?>"></script>
 	<script src="js/nav.js?_t=<?=rand()?>"></script>
 

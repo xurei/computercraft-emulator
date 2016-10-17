@@ -10,21 +10,21 @@
 	height: 100%;
 	width: 100%;
 	background-color: #000;
-	overflow: scroll;
-	
+
 	> .text
 	{
 		border-spacing: 0;
     border-collapse: separate;
 		color: #fff;
 		white-space: pre;
-		padding: 0 $pixel-size;
+		padding: 0;
 		position: absolute;
 		@include box-sizing(border-box);
 		line-height: 1.15em;
 		font-size: inherit;
 		
 		display: inline-block;
+		overflow: hidden;
 		
 		td
 		{
@@ -34,6 +34,7 @@
 			@include box-sizing(border-box);
 			//overflow: hidden;
 			font-size: inherit;
+			border: solid 1px red;
 			
 			&:nth-child(7), &:nth-child(18), &:nth-child(29), &:nth-child(39), &:nth-child(50)
 			{

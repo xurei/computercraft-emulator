@@ -81,7 +81,7 @@
 			}
 		};
 		
-		change_block_type('term', 'monitor');
+		//change_block_type('term', 'monitor');
 		
 		$('.select-block-type').change(function(){
 			var periph_type = $(this).val();
@@ -160,8 +160,8 @@
 				}
 				case "PRINT":{
 					$console.append(e.prefix+" "+e.data+"<br>");
-					CCAPI.peripherals.term.write(e.data);
-					CCAPI.peripherals.term.setCursorPos(1, CCAPI.peripherals.term.getCursorPos()[1]+1);
+					//CCAPI.peripherals.term.write(e.data);
+					//CCAPI.peripherals.term.setCursorPos(1, CCAPI.peripherals.term.getCursorPos()[1]+1);
 					//console.log("{Lua} " + e.data);
 					break;
 				}
@@ -193,7 +193,7 @@
 				localStorage.setItem('code', text);
 				
 				var periph = {
-					term: getPeriphSignature(CCAPI.peripherals.term),
+					//term: getPeriphSignature(CCAPI.peripherals.term),
 					left: getPeriphSignature(CCAPI.peripherals.left),
 					right: getPeriphSignature(CCAPI.peripherals.right),
 					top: getPeriphSignature(CCAPI.peripherals.top),

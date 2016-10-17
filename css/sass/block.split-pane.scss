@@ -96,9 +96,9 @@ $resize-line-width: 4px;
 		position: relative;
 		height: $header-height;
 		line-height: $header-height;
-		padding: 0;
-		padding-left: 5px;
+		padding: 0 0 0 5px;
 		z-index: 1;
+		background: #eee;
 	}
 	.side-content
 	{
@@ -108,17 +108,28 @@ $resize-line-width: 4px;
 		padding-top: $header-height;
 		margin-top: -$header-height;
 		z-index: 0;
+		overflow: scroll;
+
+		fieldset {
+			border: none;
+			margin: 0;
+			padding: 0 0 0 5px;
+		}
 	}
 	.side
 	{
 		height: 100%;
+		width: 100%;
 		@include box-sizing(border-box);
-		display: none;
-		position: relative;
+		visibility: hidden;
+		z-index: 0;
+		display: block;
+		position: absolute;
 		
 		&.active
 		{
-			display: block;
+			visibility: visible;
+			z-index: 1;
 		}
 	}
 	//.side-content

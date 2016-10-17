@@ -9,24 +9,30 @@
 
 		var $output_strength = $elem.find('.output-strength');
 		var $input_strength = $elem.find('[name="input-strength"]');
-		console.log($input_strength);
-
+		
 		out.getAnalogInput = function()
 		{
 			var valOut = out.getAnalogOutput()[0];
 			var valIn = parseFloat($input_strength.val());
 			return [Math.max(valIn, valOut)];
-		}
+		};
+		
+		out.getAnalogOutput = function()
+		{
+			return [$output_strength.text()];
+		};
+		
 		out.getInput = function()
 		{
 			var val = out.getAnalogInput();
 			return [(val[0] > 0)];
-		}
+		};
+		
 		out.getOutput = function()
 		{
 			var val = out.getAnalogOutput();
 			return [(val[0] > 0)];
-		}
+		};
 
 		out.setAnalogOutput = function(value)
 		{
@@ -34,11 +40,12 @@
 			setTimeout(function(){
 				$output_strength.text(value);
 			}, 100);
-		}
+		};
+		
 		out.setOutput = function(value)
 		{
 			out.setAnalogOutput(value==true || value==1 || value=="true" ? 15 : 0);
-		}
+		};
 
 		$elem.find('.output-strength').text(0);
 		
