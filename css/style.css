@@ -11,21 +11,21 @@ h1 { text-align: center; }
 
 html.split-started * { user-select: none; -moz-user-select: none; -webkit-user-select: none; -ms-user-select: none; }
 
-#sides-pane { position: relative; z-index: 1; display: block; float: left; margin-left: -48px; width: 48px; padding-left: 4px; -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
+#sides-pane { position: relative; z-index: 1; display: block; float: left; margin-left: -50px; width: 50px; padding-left: 4px; -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
 #sides-pane ul { list-style: none; padding: 0; margin: 0; }
-#sides-pane ul li { height: 48px; border: solid 1px silver; border-left: none; border-top: none; cursor: pointer; font-size: 0.8rem; text-align: center; line-height: 16px; }
+#sides-pane ul li { height: 50px; border: solid 1px silver; border-left: none; border-top: none; cursor: pointer; font-size: 0.8rem; text-align: center; line-height: 16.66667px; }
 #sides-pane ul li:hover { background: #eee; }
 #sides-pane ul li .periph { font-size: 0.7rem; }
 #sides-pane ul li.active { background: #7ab14d; color: #fff; }
 
 #left-pane, #resize-line, #right-pane { height: 100%; float: left; margin: 0; position: relative; -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; z-index: 0; }
 
-#left-pane { width: 40%; padding-right: 48px; }
+#left-pane { width: 40%; padding-right: 50px; }
 
-#resize-line { background: silver; width: 4px; margin-left: -48px; cursor: col-resize; z-index: 100; }
+#resize-line { background: silver; width: 4px; margin-left: -50px; cursor: col-resize; z-index: 100; }
 
-#right-pane { width: 60%; padding-left: 10px; overflow: auto; }
-#right-pane .side-header { -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; position: relative; height: 27px; line-height: 27px; padding: 0; z-index: 1; }
+#right-pane { width: 60%; padding-left: 0px; overflow: auto; }
+#right-pane .side-header { -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; position: relative; height: 27px; line-height: 27px; padding: 0; padding-left: 5px; z-index: 1; }
 #right-pane .side-content { -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; position: relative; height: 100%; padding-top: 27px; margin-top: -27px; z-index: 0; }
 #right-pane .side { height: 100%; -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; display: none; position: relative; }
 #right-pane .side.active { display: block; }

@@ -6,7 +6,7 @@ html.split-started *
 	-ms-user-select: none;
 }
 
-$sides-pane-width: 48px;
+$sides-pane-width: 50px;
 $resize-line-width: 4px;
 #sides-pane
 {
@@ -79,7 +79,7 @@ $resize-line-width: 4px;
 {
 	@extend %pane;
 	width: 60%;	
-	padding-left: 10px;
+	padding-left: 0px;
 	overflow: auto;
 	
 	$header-height: 27px;
@@ -90,6 +90,7 @@ $resize-line-width: 4px;
 		height: $header-height;
 		line-height: $header-height;
 		padding: 0;
+		padding-left: 5px;
 		z-index: 1;
 	}
 	.side-content
