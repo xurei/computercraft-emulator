@@ -28,6 +28,7 @@
 		
 		out._addOnOffGetter("getConnected", '.is-connected');
 		out._addOnOffGetter("getActive", '.is-active');
+		out._addOnOffGetter("getInductorEngaged", '.is-inductor-engaged');
 		//--------------------------------------------------------------------------
 		
 		out._addNumGetter('getEnergyStored', '[name="energy-stored"]');
@@ -41,7 +42,6 @@
 		out._addNumGetter('getFluidFlowRateMax', '[name="flow-rate-max"]');
 		out._addNumGetter('getFluidFlowRateMaxMax', '[name="flow-rate-max-max"]');
 		out._addNumGetter('getEnergyProducedLastTick', '[name="energy-produced-last-tick"]');
-		out._addNumGetter('getInductorEngaged', '[name="inductor-engaged"]');
 		//--------------------------------------------------------------------------
 		
 		out.setActive = function (b) {
@@ -54,9 +54,9 @@
 		
 		out.setInductorEngaged = function (b) {
 			if (b=="true")
-				$elem.find('.inductor-engaged').addClass('active');
+				$elem.find('.is-inductor-engaged').addClass('active');
 			else
-				$elem.find('.inductor-engaged').removeClass('active');
+				$elem.find('.is-inductor-engaged').removeClass('active');
 		};
 		//--------------------------------------------------------------------------
 		
