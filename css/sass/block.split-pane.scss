@@ -22,16 +22,18 @@ $resize-line-width: 4px;
 	{
 		list-style: none;
 		padding: 0;
+		margin: 0;
 		li
 		{
 			height: $sides-pane-width;
 			border: solid 1px silver;
 			border-left: none;
 			border-top: none;
-			&:first-of-type
-			{
-				border-top: solid 1px silver;
+			cursor: pointer;
+			&:hover {
+				background: #eee;
 			}
+
 			font-size: 0.8rem;
 			text-align: center;
 			line-height: $sides-pane-width / 3;
@@ -43,7 +45,8 @@ $resize-line-width: 4px;
 			
 			&.active
 			{
-				background: yellow;
+				background: #7ab14d;
+				color: #fff;
 			}
 		}
 	}

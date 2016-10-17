@@ -12,11 +12,11 @@ h1 { text-align: center; }
 html.split-started * { user-select: none; -moz-user-select: none; -webkit-user-select: none; -ms-user-select: none; }
 
 #sides-pane { position: relative; z-index: 1; display: block; float: left; margin-left: -48px; width: 48px; padding-left: 4px; -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
-#sides-pane ul { list-style: none; padding: 0; }
-#sides-pane ul li { height: 48px; border: solid 1px silver; border-left: none; border-top: none; font-size: 0.8rem; text-align: center; line-height: 16px; }
-#sides-pane ul li:first-of-type { border-top: solid 1px silver; }
+#sides-pane ul { list-style: none; padding: 0; margin: 0; }
+#sides-pane ul li { height: 48px; border: solid 1px silver; border-left: none; border-top: none; cursor: pointer; font-size: 0.8rem; text-align: center; line-height: 16px; }
+#sides-pane ul li:hover { background: #eee; }
 #sides-pane ul li .periph { font-size: 0.7rem; }
-#sides-pane ul li.active { background: yellow; }
+#sides-pane ul li.active { background: #7ab14d; color: #fff; }
 
 #left-pane, #resize-line, #right-pane { height: 100%; float: left; margin: 0; position: relative; -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; z-index: 0; }
 
@@ -30,14 +30,16 @@ html.split-started * { user-select: none; -moz-user-select: none; -webkit-user-s
 #right-pane .side { height: 100%; -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; display: none; position: relative; }
 #right-pane .side.active { display: block; }
 
-#main { padding-top: 22px; }
+#main { padding-top: 34px; }
 
-#header { position: fixed; top: 0; left: 0; width: 100%; background: #49483E; background: #3c3d34; color: #ddd; height: 22px; line-height: 20px; z-index: 1000; padding: 2px 20px 0 55px; -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
+#header { position: fixed; top: 0; left: 0; width: 100%; background: #49483E; background: #3c3d34; color: #ddd; height: 34px; line-height: 32px; z-index: 1000; padding: 2px 20px 0 50px; -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
 #header:before { content: ""; background: #7ab14d; height: 2px; display: block; position: absolute; left: 0; top: 0; right: 0; }
 #header a { color: inherit; text-decoration: none; }
 #header > ul { padding: 0; margin: 0; list-style: none; display: inline-block; }
-#header > ul > li { display: inline-block; }
+#header > ul > li { display: inline-block; -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
 #header > ul > li:not(:last-child) { margin-right: 15px; }
+#header > ul > li:hover { background: #7ab14d; }
+#header > ul > li > a { height: 100%; display: inline-block; padding: 0 10px; }
 
 .popup-overlay { background: rgba(0, 0, 0, 0.3); position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 1000; overflow-y: auto; overflow-x: hidden; display: none; }
 .popup-overlay.active { display: block; }

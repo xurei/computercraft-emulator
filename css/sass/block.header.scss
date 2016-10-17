@@ -1,4 +1,4 @@
-$header-h: 20px;
+$header-h: 32px;
 $line-top-h: 2px;
 #main
 {
@@ -30,7 +30,7 @@ $line-top-h: 2px;
 	line-height: $header-h;
 	z-index: 1000;
 	
-	padding: $line-top-h 20px 0 55px;
+	padding: $line-top-h 20px 0 50px;
 	@include box-sizing(border-box);
 	
 	a
@@ -49,9 +49,19 @@ $line-top-h: 2px;
 		> li
 		{
 			display: inline-block;
+			@include box-sizing(border-box);
 			&:not(:last-child)
 			{
 				margin-right: 15px;
+			}
+			&:hover {
+				background: #7ab14d;
+			}
+
+			> a {
+				height: 100%;
+				display: inline-block;
+				padding: 0 10px;
 			}
 		}
 	}

@@ -22,10 +22,10 @@
 			You are a developer ? You want to help this project ? <a href="https://github.com/xurei/computercraft-emulator" target="_blank">Fork it on github</a>, it's open source ! 
 		</p>
 		
-		<h2>About the author</h2>
+		<!-- <h2>About the author</h2>
 		<p>
 			TODO 
-		</p>
+		</p> -->
 	</div>
 </div>
 <script>
