@@ -21,6 +21,11 @@
 		<p>
 			You are a developer ? You want to help this project ? <a href="https://github.com/xurei/computercraft-emulator" target="_blank">Fork it on github</a>, it's open source ! 
 		</p>
+
+		<h2>See also</h2>
+		<ul>
+			<li>Official Computercraft forum post : http://www.computercraft.info/forums2/index.php?/topic/20317-computercraft-emulator</li>
+		</ul>
 		
 		<!-- <h2>About the author</h2>
 		<p>
