@@ -106,10 +106,9 @@
 	<script src="js/nav.js?_t=<?=rand()?>"></script>
 
 	<?php if (!file_exists("/home/olivier")): ?>
-		<?php $ga_code=""; if (file_exists(dirname(__FILE__)."/ga_code.txt")) $ga_code=file_get_contents(dirname(__FILE__)."/ga_code.txt"); ?>
 		<script>
 			var _gaq = _gaq || [];
-			_gaq.push(['_setAccount', '<?= $ga_code ?>']);
+			_gaq.push(['_setAccount', 'UA-26197628-1']);
 			_gaq.push(['_trackPageview']);
 			(function() {
 				var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
