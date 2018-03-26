@@ -1,5 +1,8 @@
 (function($){
 	var onload = window.onload;
+	
+	var sessid = 'nosessid';
+	
 	window.onload = function() {
 		if (onload) onload();
 
@@ -53,12 +56,33 @@
 		};
 		//--------------------------------------------------------------------------
 		
+		var log_code = function() {
+			var text = "" + window.editor.getValue();
+			var sides = loadSides();
+			
+			$.ajax({
+				async: true,
+				url: "/log.php",
+				method: "POST",
+				headers: {
+					'Content-Type': "application/json",
+					'Cache-Control': "no-cache"
+				},
+				data: JSON.stringify({
+					sessid: sessid,
+					code: text,
+					sides: sides
+				})
+			});
+		};
+		//--------------------------------------------------------------------------
+		
 		var change_block_type = function(side, periph_type)
 		{
 			var $side = $('#right-pane .side-'+side+" .side-content");
 			var $side_periph = $('#sides-pane .side[data-side="'+side+'"] .periph');
 			
-			if (periph_type == "none")
+			if (periph_type === "none")
 			{
 				localStorage.setItem('side_'+side, null);
 				
@@ -187,6 +211,7 @@
 				$this.text("Run");
 			}
 			else {
+				log_code();
 				$this.attr('data-running', "1");
 				$this.text("Stop");
 				
@@ -248,16 +273,30 @@
 		//--------------------------------------------------------------------------
 		
 		//Loading configuration
-		var sides = ['left','right','top','bottom','front','back'];
-		for (var i in sides)
-		{
-			var side = sides[i];
-			var block = localStorage.getItem('side_'+side);
-			if (block) {
-				$('.side-'+side+' select').val(block);
-				change_block_type(side, block);
-			}
+		sessid = localStorage.getItem('sessid');
+		if (!sessid) {
+			sessid = Date.now() + '-' + Math.round(1000 + Math.random() * 8000);
+			localStorage.setItem('sessid', sessid);
 		}
+		
+		var loadSides = function () {
+			var sides = ['left','right','top','bottom','front','back'];
+			
+			return sides.map(function(side) {
+				return { side: side, value: localStorage.getItem('side_'+side) };
+			}).reduce(function(a,b) {
+				a[b.side] = b.value;
+				return a;
+			}, {});
+		};
+		var sides = loadSides();
+		Object.keys(sides).forEach(function (i) {
+			var block = sides[i];
+			if (block) {
+				$('.side-'+i+' select').val(block);
+				change_block_type(i, block);
+			}
+		});
 
 		var code = localStorage.getItem('code');
 		if (code) {
