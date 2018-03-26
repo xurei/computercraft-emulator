@@ -11,6 +11,8 @@
 		</ul>
 		<ul>
 			<li><a href="javascript:;" class="about-link">About</a></li>
+			<li><a href="https://www.facebook.com/CCEmu" target="_blank" class="facebook-link">Facebook</a></li>
+			<li><a href="https://github.com/xurei/computercraft-emulator" target="_blank" class="facebook-link">Github</a></li>
 			<?php
 			/*
 			<li><a href="javascript:;">Donate</a></li>
