@@ -42,3 +42,4 @@ ga_code.txt
 .idea
 *.map
 .sass-cache
+/keys.php
