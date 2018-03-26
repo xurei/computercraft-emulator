@@ -249,19 +249,20 @@
 		
 		//Loading configuration
 		var sides = ['left','right','top','bottom','front','back'];
-		for (i in sides)
+		for (var i in sides)
 		{
 			var side = sides[i];
 			var block = localStorage.getItem('side_'+side);
-			if (block!=null & block!=undefined) {
+			if (block) {
 				$('.side-'+side+' select').val(block);
 				change_block_type(side, block);
 			}
 		}
 
 		var code = localStorage.getItem('code');
-		if (code != null && code != undefined)
+		if (code) {
 			window.editor.setValue(code);
+		}
 	};
 
 	//----------------------------------------------------------------------------
