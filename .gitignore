@@ -39,3 +39,6 @@ lua_vm_js
 css/.sass-cache
 ga_code.txt
 *.iml
+.idea
+*.map
+.sass-cache
