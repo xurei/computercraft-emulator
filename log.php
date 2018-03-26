@@ -18,7 +18,7 @@ if (isset($_POST)) {
 		
 		$filename = $sessid . '-' . time() . '.json';
 		
-		$s3->putObject($json, 'ccemu-logs', $filename);
+		$s3->putObject($json, 'ccemu-logs', $filename, S3::ACL_PRIVATE, array(), array('Content-Type' => 'application/json'));
 	}
 	else {
 		http_response_code(500);
